@@ -1,0 +1,100 @@
+﻿@model RestaurantViewModel
+
+@using WebApplication.Models.Restaurant
+@using WebApplication.DbStuff.Institutions;
+@using WebApplication.Service
+@inject IUserService _userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/dishCountInBasket.js"></script>
+}
+
+<link rel="stylesheet" href="~/css/Restaurant.css" />
+
+<div class="rest-panel">
+
+    <div class="header-rest">
+        Меню Ресторана "@Model.Name"!
+    </div>
+
+    <div class="top-btn">
+        <a href="@Url.Action("CreateDish", "Restaurant", new { @id = Model.Id })"><span class="icon add" title="Добавить блюдо"></span></a> |
+    </div>
+
+    @if (Model.Dishes.Count <= 0)
+    {
+        <span>Извините в данный момент ресторан в процессе открытия. Нет блюд на выбор. Попробуйте выбрать другой ресторан.</span>
+    }
+    else
+    {
+        <div>
+            Можете написать названия блюда
+            <div>
+                <div>
+                    <input type="hidden" class="restaurantId" value="@Model.Id" />
+                    <input class="dish-name-search" placeholder="Например 'Оливье'" />
+                    <div class="dish-options hide">
+                        <span class="dish-option" data-id="0">
+                            Подсказка 1
+                        </span>
+                        <span class="dish-option">
+                            Подсказка 2
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-box">
+            @foreach (var dishType in (DishType[])Enum.GetValues(typeof(DishType)))
+            {
+                @if (Model.Dishes.Where(x => x.DishType == dishType).ToList().Count > 0)
+                {
+                    <div class="menu-content">
+                        <div class="menu-category">
+                            <div class="category-box ">
+                                <span class="@dishType.ToString().ToLower()"></span>
+                            </div>
+                            @foreach (var dish in Model.Dishes.Where(x => x.DishType == dishType))
+                            {
+                                <div class="menu-dishes">
+                                    <div class="dish-content">
+                                        <div class="dish">
+                                            <div class="dish-box">
+                                                <div>
+                                                    <div class="dish-name">@dish.Name</div>
+                                                    @if (_userService.IsOwnerOrganization() || _userService.IsAdministratorOrganization(Model.Id))
+                                                    {
+                                                        <a href="@Url.Action("EditDish", "Restaurant", new { @dishId = dish.Id })">
+                                                            <span class="icon edit" title="Редактировать блюдо"></span>
+                                                        </a>
+                                                        <a href="@Url.Action("RemoveDish", "Restaurant", new { @dishId = dish.Id, @restaurantId = Model.Id })">
+                                                            <span class="icon remove" title="Удалить блюдо"></span>
+                                                        </a>
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <div class="dish-price">@dish.Price р.</div>
+                                                </div>
+                                            </div>
+                                            <div class="dish-box dish-box-desc">
+                                                <div class="dish-desc">@dish.Description (@dish.Grams грамм).</div>
+                                            </div>
+                                            <div class="dish-button">
+                                                <a class="nav-link btn-check" href="@Url.Action("AddToBasket", "Restaurant", new { @dishId = dish.Id, @restId = Model.Id })">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

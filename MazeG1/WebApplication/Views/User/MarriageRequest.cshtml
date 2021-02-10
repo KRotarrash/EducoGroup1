@@ -1,0 +1,24 @@
+﻿@namespace WebApplication.DbStuff.Model
+@model NotificationViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>Запрос на брак</h1>
+
+    <form action="/User/MarriageRequest" method="post">
+
+        <div>
+            с пользователем:
+            @Html.DropDownListFor(
+            m => m.UserId,
+                new SelectList(Model.Users,
+                    $"{nameof(UserViewModel.Id)}",
+                    $"{nameof(UserViewModel.UserName)}"))
+        </div>
+
+
+        <input type="submit" value="Создать" />
+    </form>
+</div>

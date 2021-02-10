@@ -1,0 +1,55 @@
+﻿@model ManagerOfficeViewModel
+@using WebApplication.Models.Job;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id='users'>
+
+    @if (!Model.IsAnyAddress)
+    {
+        <span>Извините в данный момент, вы не можете добавить офис.</span>
+        <span>Нет адресов.</span>
+    }
+    else
+    {
+        <h1>Перечень офисов</h1>
+        <div>
+            <a href="@Url.Action("AddOffice", "Job")"><span class="icon add" title="Добавить офис"></span></a>
+        </div>
+
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Действия</th>
+            </tr>
+            @if (Model.Offices != null)
+            {
+                @foreach (var office in Model.Offices)
+                {
+                    <tr>
+                        <td>
+                            @office.Id
+                        </td>
+                        <td>
+                            @office.Name
+                        </td>
+                        <td>
+                            <a href="@Url.Action("EditOffice", "Job", new { @id = office.Id })">
+                                <span class="icon edit" title="Редактировать офис"></span>
+                            </a>
+                            <a href="@Url.Action("RemoveOffice", "Job", new { @id = office.Id })">
+                                <span class="icon remove" title="Удалить офис"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    }
+
+</div>

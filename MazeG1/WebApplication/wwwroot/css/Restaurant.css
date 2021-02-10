@@ -1,0 +1,287 @@
+﻿html *:before {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    justify-content:center
+}
+
+.rest-panel {
+    /*display: flex;*/
+    min-width:70%;
+}
+
+.rest-panel img{
+    max-height: 150px;
+    padding: .3em .1em;
+}
+
+.restlist {
+    min-width: 500px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+
+.list {
+    margin: 7px;
+    border: 1px #ccc solid;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    min-height: 100px;
+    max-height: 550px;
+}
+
+.list>*:first-child{
+    align-self: stretch;
+    text-align: center;
+    border-bottom: 4px double black;
+    padding: .2em;
+    margin-right: .5em;
+    margin-left: .5em;
+}
+
+.imgRest {
+    text-align: center;
+}
+
+.underPic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-rest {
+    text-align: center;
+    border-bottom: 4px double black;
+    padding: .2em;
+    margin-right: .5em;
+    margin-left: .5em;
+    margin-bottom: .5em;
+}
+
+.inner {
+    position: relative;
+    padding: 20px 0;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: aqua;
+}
+
+.menu-col {
+    float: left;
+    width: 50%;
+    
+}
+
+.menu-col h2{
+    margin-bottom: 22px;
+}
+
+.menu-item {
+    margin-bottom: 30px;
+}
+
+.menu-name {
+    margin-bottom: 6px;
+    color: #8c9aa0;
+    position: relative;
+    /*background-color: #001f2d;*/
+    overflow: hidden;
+    min-height: 50px;
+}
+
+.menu-name:before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 5px;
+    border-bottom: 1px dotted #8c9aa0;
+}
+
+.menu-ttl {
+    float: left;
+    margin-right: 110px;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.menu-ttl span{
+    position: relative;
+    /*background-color: #001f2d;*/
+    padding-right: 10px;
+    z-index: 1;
+}
+
+
+.menu-price {
+    position: absolute;
+    width: 110px;
+    right: 0;
+    bottom: 0;
+    padding-left: 10px;
+    font-weight: 700;
+    font-size: 19px;
+    white-space: nowrap;
+    z-index: 1;
+    text-align: left;
+    /*background-color: #001f2d;*/
+}
+
+.btn-add {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    outline: none;
+    transition: background 9999999s;
+}
+
+.btn-add:active {
+    background-color: cadetblue !important;
+    transition: background 0s;
+}
+
+.rub {
+    font-weight: 400;
+}
+
+.menu-table-result{
+    margin-top: 20px;
+}
+
+.menuTable {
+    border: 1px #000 solid;
+    width: 620px;
+    border-spacing: 0px;
+    margin-bottom: 15px;
+    margin: 0 auto 0 auto;
+}
+
+.menuTable tr:first-child {
+    text-align: center;
+}
+
+.menuTable td {
+    text-align: center;
+    border: 1px #000 solid;
+    padding: 5px;
+}
+
+.btn-check {
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    outline: none;
+    transition: background 9999999s;
+    display:inline-block;
+}
+
+
+    .btn-check:active {
+        background-color: cadetblue !important;
+        transition: background 0s;
+    }
+
+.menu-box, .category-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-content {
+    width: 800px;
+}
+
+.menu-category h2 {
+    padding: 20px;
+}
+
+.menu-dishes {
+    padding: 0px 0px 0px 20px;
+}
+
+.dish {
+    padding: 0px 0px 10px 0px;
+}
+
+.dish-price {
+    padding: 0px 15px 0px 0px;
+}
+
+.dish .dish-name {
+}
+
+.dish-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dish-box-desc {
+    padding: 0px 0px 10px 10px;
+}
+
+.undefined:before {
+    content: "Неопределённый";
+}
+
+.appetizers:before {
+    content: "Закуски";
+}
+
+.coldplatter:before {
+    content: "Холодные закуски";
+}
+
+.hotappetizers:before {
+    content: "Горячие закуски";
+}
+
+.soups:before {
+    content: "Супы";
+}
+
+.salads:before {
+    content: "Салаты";
+}
+
+.softdrinks:before {
+    content: "Безалкогольные напитки";
+}
+
+.hotdrinks:before {
+    content: "Спиртное";
+}
+
+.orderCancle-btn {
+    background: #fa7773;
+}
+
+.orderCancle-btn:hover {
+    background: #f23d38;
+}
+
+.aDecoration {
+    color:blue;
+}
+
+.aDecoration:hover {
+    color:blueviolet;    
+}

@@ -1,0 +1,56 @@
+﻿@model MedicalRecordDetailViewModel
+@using WebApplication.DbStuff.Model.Job;
+
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div>
+        <div class="header-job-add">
+            <h1>Осмотр</h1>
+        </div>
+        <form action="/Hospital/EditDetail" method="post">
+            @Html.HiddenFor(x => x.Id)
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.PatientId)
+                    @Html.DropDownListFor(
+                    m => m.PatientId,
+                        new SelectList(Model.Users,
+                            $"{nameof(UserViewModel.Id)}",
+                            $"{nameof(UserViewModel.UserName)}"))
+
+                    <div class="field-error">
+                        @Html.ValidationMessageFor(x => x.PatientId)
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.DateOfExamination)
+                    : @Html.TextBoxFor(x => x.DateOfExamination, "{0:yyyy-MM-dd}",
+new { @class = "form-control", placeholder = "DateEvent", min = "2000/01/01", type = "date" })
+
+                    <div class="field-error">
+                        @Html.ValidationMessageFor(x => x.DateOfExamination)
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-row">
+                <div class="field-area">
+                    @Html.LabelFor(x => x.ResultOfExamination,
+                         string.Format("{0}:", Html.DisplayNameFor(m => m.ResultOfExamination)))
+
+                    @Html.TextAreaFor(x => x.ResultOfExamination)
+
+                    <div class="field-error">
+                        @Html.ValidationMessageFor(x => x.ResultOfExamination)
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Создать" />
+        </form>
+    </div>

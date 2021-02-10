@@ -1,0 +1,27 @@
+﻿@using WebApplication.Models.Firefighters;
+@model BuildingTypeSafetyAssessmentViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/Firefighters/AddOrEditTypeSafety" method="post" class="form-firefighters-typeSafe-create">
+    @Html.HiddenFor(x => x.Id)
+    <div class="main">
+        <div class="main-title">
+            <h1>Создание/Редактирование типа оценки здания</h1>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.NameOfTypeSafetyAssessment)
+                : @Html.TextBoxFor(x => x.NameOfTypeSafetyAssessment)
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.NameOfTypeSafetyAssessment)
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

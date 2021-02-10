@@ -1,0 +1,49 @@
+﻿@model MazeViewModel
+
+
+<h1>Welcome to Maze!</h1>
+<a href="/Home/MazeCoreStructure">
+    <input type="button" value="Структура MazeCore" />
+</a>
+<h3>Легенда:</h3>
+<ul type="circle">
+    <li><img src="~/Img/wall.png" alt="Wall" /> - Стена</li>
+    <li><img src="~/Img/ground.png" alt="Wall" /> - Земля</li>
+    <li><img src="~/Img/hero.png" alt="Wall" /> - Герой</li>
+    <li><img src="~/Img/well.png" alt="Wall" /> - Колодец</li>
+    <li><img src="~/Img/coin.png" alt="Wall" /> - Монетка</li>
+</ul>
+
+<div class="mainWrap">
+    <div class="mazeWrap">
+        @for (int y = 0; y < Model.Height; y++)
+        {
+        <div class="rowMaze">
+            @for (int x = 0; x < Model.Width; x++)
+            {
+                var cell = Model.Cells.Single(cell => cell.X == x && cell.Y == y);
+                <div class="cell @cell.CellType.ToString().ToLower()"></div>
+                @*Данный div представляет собой ячейку. В зависимомти от типа ячейки ей будет присвоен еще один определенный класс,
+                    а в site.css будут прописаны стили*@
+            }
+        </div>
+        }
+    </div>
+</div>
+
+
+
+
+@*<div style="border: 1px black solid; text-align: center">
+        @for (int y = 0; y < Model.Height; y++)
+        {
+            <div>
+                @for (int x = 0; x < Model.Width; x++)
+                {
+                    <span>
+                        @Model.Cells.Single(cell => cell.X == x && cell.Y == y).CellType
+                    </span>
+                }
+            </div>
+        }
+    </div>*@

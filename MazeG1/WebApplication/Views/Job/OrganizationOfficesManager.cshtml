@@ -1,0 +1,84 @@
+﻿@model OrganizationOfficesManagerViewModel
+@using WebApplication.DbStuff.Model.Job;
+@using WebApplication.Models.Job;
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Scripts{
+    <script src="~/js/officeSelectValidation.js"></script>
+}
+
+
+<div id='offices'>
+    <div class="officesHeader">
+        Управление офисами организации @Model.Name
+    </div>
+    <div class="officesListWrapper">
+        <div>
+            Главный офис:
+            @if (Model.MainOffice != null)
+            {
+                @Model.MainOffice.Name
+            }
+        </div>
+        <div class="addOffice">
+            <form id="officeAddForm" action="/Job/AddingOfficeToOrganization" method="post">
+                Добавить офис:
+                @Html.DropDownListFor(
+                m => m.AddedOfficeId,
+                    new SelectList(Model.FreeOffices,
+                        $"{nameof(OfficeViewModel.Id)}",
+                        $"{nameof(OfficeViewModel.Name)}"),
+                        "Выберите офис")
+                @Html.HiddenFor(m => m.Id)
+                <input type="submit" value="Добавить" />
+                <div class="alertMessage">Офис не выбран</div>
+            </form>
+        </div>
+        <table class="officesList">
+            <tr>
+                <th>Название</th>
+                <th>Адрес</th>
+                <th>Действия</th>
+            </tr>
+            @if (Model.Offices != null)
+            {
+                @foreach (var office in Model.Offices)
+                {
+                    <tr>
+                        <td>
+                            @office.Name
+                        </td>
+                        <td>
+                            @office.Address.City, @office.Address.Street, @office.Address.HouseNumber
+                        </td>
+                        <td>
+                            <a href="@Url.Action("EditOffice", "Job", new { @id = office.Id })">
+                                <span class="icon edit" title="Редактировать данные офиса"></span>
+                            </a>
+                            <a href="@Url.Action("ExcludeOfficeFromOrganization", "Job", new {  @organizationId = Model.Id, @officeId = office.Id })">
+                                <span class="icon remove" title="Исключить офис из организации"></span>
+                            </a>
+                            @if (office.OfficeType == OfficeType.Branch)
+                            {
+                                <a href="@Url.Action("ChangeMainOffice", "Job",
+                                    new { @organizationId = Model.Id, @officeId = office.Id })">
+                                    <span class="icon main" title="Назначить главным офисом"></span>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>
+
+
+
+

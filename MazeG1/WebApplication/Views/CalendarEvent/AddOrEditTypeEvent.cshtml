@@ -1,0 +1,27 @@
+﻿@using WebApplication.Models.Calendar;
+@model CalendarTypeEventViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/CalendarEvent/AddOrEditTypeEvent" method="post" class="form-calendar-typeEvent-create">
+    @Html.HiddenFor(x => x.Id)
+    <div class="main">
+        <div class="main-title">
+            <h1>Создание/Редактирование типа события</h1>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.NameOfTypeEvent)
+                : @Html.TextBoxFor(x => x.NameOfTypeEvent)
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.NameOfTypeEvent)
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

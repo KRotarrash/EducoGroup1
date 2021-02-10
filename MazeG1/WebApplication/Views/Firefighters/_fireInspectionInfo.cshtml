@@ -1,0 +1,136 @@
+﻿@using WebApplication.Models.Firefighters;
+@model FireInspectionBuildingViewModels
+
+<div>
+    <a href="@Url.Action("AddOrEdit", "Firefighters")"><span class="icon add-fireInspection" title="Добавить осмотр здания"></span></a> |
+    <a href="@Url.Action("AddOrEditTypeSafety", "Firefighters")"><span class="icon add-typeSafe" title="Добавить тип оценки безопасности здания"></span></a> |
+</div>
+
+@Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+<table>
+    <tr>
+        <th>
+            @Html.ActionLink("Id", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Id,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("City", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.City,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.City)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("Street", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Street,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Street)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("HouseNumber", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.HouseNumber,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.HouseNumber)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("NameOfTypeSafetyAssessment", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.NameOfTypeSafetyAssessment,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.NameOfTypeSafetyAssessment)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("DateInspection", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.DateInspection,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.DateInspection)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("UserName", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.UserName,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.UserName)
+                }
+            )
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var fireInspection in Model.FireInspectionsBuilding)
+    {
+        <tr>
+            <td>
+                @fireInspection.Id
+            </td>
+            <td>
+                @fireInspection.BuildingAdress.City
+            </td>
+            <td>
+                @fireInspection.BuildingAdress.Street
+            </td>
+            <td>
+                @fireInspection.BuildingAdress.HouseNumber
+            </td>
+            <td>
+                @fireInspection.NameOfTypeSafetyAssessment
+            </td>
+            <td>
+                @fireInspection.FormatDateInspection
+            </td>
+            <td>
+                @fireInspection.PerformedFireInspectionBuildingByUser.User.UserName
+            </td>
+            <td>
+                <a href="@Url.Action("AddOrEdit", "Firefighters", new { @id = fireInspection.Id })">
+                    <span class="icon edit" title="Редактировать данные осмотра здания"></span>
+                </a>
+                <a href="@Url.Action("Remove", "Firefighters", new { @id = fireInspection.Id })">
+                    <span class="icon remove" title="Удаляем данные осмотра здания"></span>
+                </a>
+                <a href="@Url.Action("AddOrEditTypeSafety", "Firefighters", new { @id = fireInspection.BuildingTypeSafetyAssessmentId })">
+                    <span class="icon change-typeSafe" title="Меняем тип осмотра здания"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+

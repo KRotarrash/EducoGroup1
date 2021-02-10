@@ -1,0 +1,31 @@
+﻿@model JobViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <div class="header-job-add">
+            <h1>Редактирование вакансии</h1>
+        </div>
+        <form action="/Job/EditJob" method="post">
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Position.Id)
+            <div class="orgAdd">
+                <div class="org">
+                    Работодатель:
+                    @Html.DisplayName(Model.Organization.Name)
+
+                </div>
+            </div>
+
+            <div class="position">
+                Должность:
+                @Html.TextBoxFor(x => x.Position.Name)
+            </div>
+            <div class="zp">
+                Зарплата:
+                @Html.TextBoxFor(x => x.Position.Salary)
+            </div>
+            <input type="submit" value="Сохранить изменения" />
+        </form>
+    </div>

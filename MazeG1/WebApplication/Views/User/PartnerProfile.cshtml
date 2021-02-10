@@ -1,0 +1,20 @@
+﻿@model UserViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>Профиль @Model.UserName</h1>
+    <div>
+        <img class="avatar" src="/avatar/avatar-@(Model.Id).jpg" />
+    </div>
+    <div>
+        Твой номер: @Model.Id
+    </div>
+    <div>
+        Твоя роль на сайт: @Model.Role
+    </div>
+    <div>
+        Супруг/Супруга: @Model.PartnerUserName
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@model List<OrderViewModel>
+@using WebApplication.Models.Restaurant;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Restaurant.css" />
+@section Scripts{
+    <script src="~/js/Restaurant.js"></script>
+}
+
+<div class="wrapper">
+    <div class="rest-panel">
+        <div class="header-rest">
+            Корзина!
+        </div>
+
+        @if (Model.Count > 0)
+        {
+            <div class="menu-table-result">               
+                @foreach (var order in Model)
+                {
+                    <table class="menuTable">
+                        <tbody>
+                            <tr class="tableHeader">
+                                <td colspan="4">Ресторан @order.Restaurant.Name</td>
+                            </tr>
+                            <tr class="tableHeader2">
+                                <td>Название блюда</td>
+                                <td>Вес порции</td>
+                                <td>Стоимость</td>
+                                <td>Действия</td>
+                            </tr>
+
+                            @foreach (var dish in order.Dishes)
+                            {
+                                <tr>
+                                    <td title="@dish.Description">@dish.Name</td>
+                                    <td>@dish.Grams</td>
+                                    <td>@dish.Price</td>
+                                    <td>
+                                        <a href="@Url.Action("CancelDishInOrder", "Restaurant", new { @orderId = order.Id, @dishId = dish.Id, @redirectPage = "OrderBin"})">
+                                            <span class="icon bad" title="Удалить из корзины"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr class="tableFooter">
+                                <td colspan="2">Сумма заказа:</td>
+                                <td>@order.TotalCost</td>
+                                <td>
+                                    <a class="nav-link btn-check"
+                                       href="@Url.Action("AddOrder", "Restaurant", new { @orderId = order.Id } )"
+                                       rel="nofollow" id="checkout" onclick="Check()">
+                                        Оформить заказ
+                                    </a>
+
+                                    <a class="nav-link btn-check orderCancle-btn"
+                                       href="@Url.Action("CancelOrder", "Restaurant", new { @orderId = order.Id, @redirectPage = "OrderBin" } )">
+                                        Отменить заказ
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                }
+            </div>
+        }
+        else
+        {
+            <div>
+                Ваша корзина пуста. <span><a class="aDecoration" href="/Restaurant/Index">Здесь вы можете сделать заказ</a> </span>                
+            </div>
+        }
+
+    </div>
+</div>

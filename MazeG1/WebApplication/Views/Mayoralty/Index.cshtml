@@ -1,0 +1,31 @@
+﻿@using WebApplication.Service
+
+@inject IUserService userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mayoralty-content">
+    <div>
+        <ul type="circle">
+            <li><a class="nav-link" href="/Mayoralty/AddUser">Добавить пользователя</a></li>
+        </ul>
+        <ul type="circle">
+            <li><a class="nav-link" href="/Address/Index">Добавить/Редактировать Адреса</a></li>
+        </ul>
+        <ul type="circle">
+            <li><a class="nav-link" href="/Job/Vacancy">Вакансии полиции</a></li>
+        </ul>
+    </div>
+    <div>
+        <ul type="circle">
+            <li><a class="nav-link" href="/Mayoralty/HospitalHead">Назначить руководителя больниц</a></li>
+        </ul>
+    </div>
+    <div>
+        <ul type="circle">
+            <li><a class="nav-link" href="/Mayoralty/FirefightersHead">Назначить руководителя Службы пажаротушения</a></li>
+        </ul>
+    </div>
+</div>
+

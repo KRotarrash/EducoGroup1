@@ -1,0 +1,56 @@
+﻿@model RestaurantViewModel
+
+@using WebApplication.Models.Restaurant
+@using WebApplication.Service
+@inject IOrganizationService _organizationService
+@inject IUserService _userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Restaurant.css" />
+<div class="wrapper">
+    <div class="rest-panel">
+
+        <div class="restlist">
+            @if (Model.Restaurants.Count() > 0)
+            {
+                foreach (var restaurant in Model.Restaurants)
+                {
+                    if (_organizationService.IsOrganizationWorksTimes(restaurant.Id))
+                    {
+                        <div class="list">
+
+                            <div>
+                                @restaurant.Name
+                            </div>
+
+                            <div class="imgRest">
+                                <img src="/organization/organization-@(restaurant.Id).jpg" />
+                            </div>
+
+                            <div class="underPic">
+
+                                @if (_userService.IsMayor() || _userService.IsOwnerOrganization())
+                                {
+                                    <div>
+                                        <a href="@Url.Action("EditOrganization", "Job", new { @id = restaurant.Id })">
+                                            <span class="icon edit" title="Редактировать ресторан @Model.Name"></span>
+                                        </a>
+                                    </div>
+                                }
+
+                                <div>
+                                    <a href="@Url.Action("Select", "Restaurant", new { @id = restaurant.Id })">
+                                        <span class="nav-link" title="Выбрать ресторан @Model.Name">Выбрать</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>

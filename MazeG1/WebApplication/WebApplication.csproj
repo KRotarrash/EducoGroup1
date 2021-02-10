@@ -1,0 +1,183 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>35ab5fc1-ac3a-47c2-b449-3f3887c05c56</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\organization\**" />
+    <Content Remove="wwwroot\organization\**" />
+    <EmbeddedResource Remove="wwwroot\organization\**" />
+    <None Remove="wwwroot\organization\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\WAppReflectionController.cs" />
+    <Compile Remove="Migrations\20201014133108_in ManagerUsersViewModel add propperty CurrentUser.cs" />
+    <Compile Remove="Migrations\20201014133108_in ManagerUsersViewModel add propperty CurrentUser.Designer.cs" />
+	<Compile Remove="Migrations\20201018143244_AddColumn.cs" />
+	<Compile Remove="Migrations\20201018143244_AddColumn.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201026112457_test.cs" />
+    <Compile Remove="Migrations\20201026112457_test.Designer.cs" />
+    <Compile Remove="Migrations\20201026120851_test.cs" />
+    <Compile Remove="Migrations\20201026120851_test.Designer.cs" />
+    <Compile Remove="Migrations\20201026121104_QaddTab2.cs" />
+    <Compile Remove="Migrations\20201026121104_QaddTab2.Designer.cs" />
+    <Compile Remove="Migrations\20201101220619_test.cs" />
+    <Compile Remove="Migrations\20201101220619_test.Designer.cs" />
+    <Compile Remove="Migrations\20201101220715_Add_Question2.cs" />
+    <Compile Remove="Migrations\20201101220715_Add_Question2.Designer.cs" />
+    <Compile Remove="Migrations\20201101220805_test.cs" />
+    <Compile Remove="Migrations\20201101220805_test.Designer.cs" />
+    <Compile Remove="Migrations\20201120070716_AddJob.cs" />
+    <Compile Remove="Migrations\20201120070716_AddJob.Designer.cs" />
+    <Compile Remove="Migrations\20201121104927_AddDefaultValueForJob.cs" />
+    <Compile Remove="Migrations\20201121104927_AddDefaultValueForJob.Designer.cs" />
+    <Compile Remove="Migrations\20201124185647_TestMigration.cs" />
+    <Compile Remove="Migrations\20201124185647_TestMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201124185837_Test1.cs" />
+    <Compile Remove="Migrations\20201124185837_Test1.Designer.cs" />
+    <Compile Remove="Migrations\20201124190039_ChangeTable.cs" />
+    <Compile Remove="Migrations\20201124190039_ChangeTable.Designer.cs" />
+    <Compile Remove="Migrations\20201130190750_CEO_JobCandidate.cs" />
+    <Compile Remove="Migrations\20201130190750_CEO_JobCandidate.Designer.cs" />
+    <Compile Remove="Migrations\20201130191448_AddCandidatPositionTable.cs" />
+    <Compile Remove="Migrations\20201130191448_AddCandidatPositionTable.Designer.cs" />
+    <Compile Remove="Migrations\20201130191705_AddTable.cs" />
+    <Compile Remove="Migrations\20201130191705_AddTable.Designer.cs" />
+    <Compile Remove="Migrations\20201130192435_NewTable.cs" />
+    <Compile Remove="Migrations\20201130192435_NewTable.Designer.cs" />
+    <Compile Remove="Migrations\20201201062203_NewTableCandidate.cs" />
+    <Compile Remove="Migrations\20201201062203_NewTableCandidate.Designer.cs" />
+    <Compile Remove="Migrations\20201202154907_CandidateTable.cs" />
+    <Compile Remove="Migrations\20201202154907_CandidateTable.Designer.cs" />
+    <Compile Remove="Migrations\20201202114126_fakemigratio.cs" />
+    <Compile Remove="Migrations\20201202114126_fakemigratio.Designer.cs" />
+    <Compile Remove="Migrations\20201202114219_jj.cs" />
+    <Compile Remove="Migrations\20201202114219_jj.Designer.cs" />
+    <Compile Remove="Migrations\20201211084830_CreateRestaurant.cs" />
+    <Compile Remove="Migrations\20201211084830_CreateRestaurant.Designer.cs" />
+    <Compile Remove="Migrations\20201211085452_CreateRestaurant.cs" />
+    <Compile Remove="Migrations\20201211085452_CreateRestaurant.Designer.cs" />
+    <Compile Remove="Migrations\20201211090110_CreateRestaurant.cs" />
+    <Compile Remove="Migrations\20201211090110_CreateRestaurant.Designer.cs" />
+    <Compile Remove="Migrations\20201211091735_CreateRestaurant.cs" />
+    <Compile Remove="Migrations\20201211091735_CreateRestaurant.Designer.cs" />
+    <Compile Remove="Migrations\20201215111251_fake.cs" />
+    <Compile Remove="Migrations\20201215111251_fake.Designer.cs" />
+    <Compile Remove="Migrations\20201215111636_fake.cs" />
+    <Compile Remove="Migrations\20201215111636_fake.Designer.cs" />
+    <Compile Remove="Migrations\20201217103157_fke.cs" />
+    <Compile Remove="Migrations\20201217103157_fke.Designer.cs" />
+    <Compile Remove="Migrations\20201218062833_fake.cs" />
+    <Compile Remove="Migrations\20201218062833_fake.Designer.cs" />
+    <Compile Remove="Migrations\20210108162817_AddFieldForUserBlocked.cs" />
+    <Compile Remove="Migrations\20210108162817_AddFieldForUserBlocked.Designer.cs" />
+    <Compile Remove="Migrations\20210113163544_HospitalTables.cs" />
+    <Compile Remove="Migrations\20210113163544_HospitalTables.Designer.cs" />
+    <Compile Remove="Migrations\20210117115001_OneToOnePatientRecord.cs" />
+    <Compile Remove="Migrations\20210117115001_OneToOnePatientRecord.Designer.cs" />
+    <Compile Remove="Migrations\20210118073522_UpdatePostion.cs" />
+    <Compile Remove="Migrations\20210118073522_UpdatePostion.Designer.cs" />
+    <Compile Remove="Migrations\20210118074045_AddWorderForPosition.cs" />
+    <Compile Remove="Migrations\20210118074045_AddWorderForPosition.Designer.cs" />
+    <Compile Remove="Migrations\20210118074603_AddWorderForPosition.cs" />
+    <Compile Remove="Migrations\20210118074603_AddWorderForPosition.Designer.cs" />
+    <Compile Remove="Migrations\20210118075536_Test.cs" />
+    <Compile Remove="Migrations\20210118075536_Test.Designer.cs" />
+    <Compile Remove="Migrations\20210118075702_AddCurrentWorkIdVisible.cs" />
+    <Compile Remove="Migrations\20210118075702_AddCurrentWorkIdVisible.Designer.cs" />
+    <Compile Remove="Migrations\20210118112029_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118112029_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118112520_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118112520_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118113704_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118113704_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118115830_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118115830_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118120506_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118120506_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118122235_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118122235_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118125040_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118125040_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118125436_test.cs" />
+    <Compile Remove="Migrations\20210118125436_test.Designer.cs" />
+    <Compile Remove="Migrations\20210118125525_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118125525_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210118125836_AddWorkForUser.cs" />
+    <Compile Remove="Migrations\20210118125836_AddWorkForUser.Designer.cs" />
+    <Compile Remove="Migrations\20210124194146_OrgazniationInThefficeCanBeull.cs" />
+    <Compile Remove="Migrations\20210124194146_OrgazniationInThefficeCanBeull.Designer.cs" />
+    <Compile Remove="Migrations\20210124194304_OrganizationInTheOfficeCanBeNull.cs" />
+    <Compile Remove="Migrations\20210124194304_OrganizationInTheOfficeCanBeNull.Designer.cs" />
+    <Compile Remove="Migrations\20210124163459_NewMarriageTable.cs" />
+    <Compile Remove="Migrations\20210124163459_NewMarriageTable.Designer.cs" />
+    <Compile Remove="Migrations\20210127202549_ChangeNullable.cs" />
+    <Compile Remove="Migrations\20210127202549_ChangeNullable.Designer.cs" />
+    <Compile Remove="Migrations\20210113200923_AddFirefighters.cs" />
+    <Compile Remove="Migrations\20210113200923_AddFirefighters.Designer.cs" />
+    <Compile Remove="Migrations\20210113205608_AddFirefighters.cs" />
+    <Compile Remove="Migrations\20210113205608_AddFirefighters.Designer.cs" />
+    <Compile Remove="Migrations\20210120181019_AddFirefighters.cs" />
+    <Compile Remove="Migrations\20210120181019_AddFirefighters.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbFile\DbFile.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Img\coin2.png" />
+    <None Include="wwwroot\Img\ground.png" />
+    <None Include="wwwroot\Img\hero.png" />
+    <None Include="wwwroot\Img\wall.png" />
+    <None Include="wwwroot\Img\wall2.png" />
+    <None Include="wwwroot\Img\well.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="jQuery" Version="3.5.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.11.3" />
+    <PackageReference Include="GemBox.Document" Version="33.0.1000" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Const\" />
+    <Folder Include="wwwroot\Download\" />
+    <Folder Include="wwwroot\avatar\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Localization\Home.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Home.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\Home.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\Home.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Home.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

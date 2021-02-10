@@ -1,0 +1,33 @@
+.icon::before {
+    min-height: 20px;
+    min-width: 20px;
+    display: inline-block;
+    margin: 0;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    content: ' ';
+}
+
+.icon.add-event::before {
+    background-image: url(../Img/icon/add-event.png);
+}
+
+.icon.add-typeEvent::before {
+    background-image: url(../Img/icon/add-typeEvent.png);
+}
+
+.icon.change-typeEvent::before {
+    background-image: url(../Img/icon/change-typeEvent.png);
+}
+
+.icon.main-event::before {
+    background-image: url(../Img/icon/main-event.png);
+}
+
+.icon.past-event::before {
+    background-image: url(../Img/icon/past-event.png);
+}
+
+.icon.coming-event::before {
+    background-image: url(../Img/icon/coming-event.png);
+}

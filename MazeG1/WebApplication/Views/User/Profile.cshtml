@@ -1,0 +1,65 @@
+﻿@using WebApplication.DbStuff.Model;
+
+@model UserViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/user-notifications.js"></script>
+}
+
+<div>
+    <h1>Привет @Model.UserName</h1>
+    <div>
+        <img class="avatar" src="/avatar/avatar-@(Model.Id).jpg" />
+    </div>
+    <div>
+        Твой номер: @Model.Id
+    </div>
+    <div>
+        Твоя роль на сайт: @Model.Role
+    </div>
+    <div>
+        Семейное положение: @(Model.PartnerId == 0 ? "не замужем/холост" : "в браке с ") @Model.PartnerUserName
+        @if (Model.PartnerId > 0)
+        {
+            <a href="@Url.Action("PartnerProfile", "User", new { @partnerId = Model.PartnerId })">
+                <span class="icon view" title="Профиль партнера"></span>
+            </a>
+            <a href="@Url.Action("DivorceRequest", "User", new { @id = Model.Id })">
+                <span class="icon divorce" title="Заявка на развод"></span>
+            </a>
+        }
+        @if (Model.PartnerId == 0)
+        {
+            <a href="@Url.Action("MarriageRequest", "User", new { @id = Model.Id })">
+                <span class="icon marriage" title="Заявка на брак"></span>
+            </a>
+        }
+    </div>
+
+    <form action="/User/Avatar" method="post" enctype="multipart/form-data">
+        <div>
+            <input type="file" name="avatarUrl" />
+        </div>
+        <div>
+            <input type="submit" value="Загрузить" />
+        </div>
+    </form>
+
+    <div class="userNotifications">
+        <div class="userNotifications-container template">
+            <span class="message">
+                Новости
+            </span>
+            <div class="notifications-icon">
+                <a class="icon check">Принять</a>
+                <a class="icon remove">Отклонить</a>
+            </div>
+            <div class="seen-icon">
+                <a class="icon seen"></a>
+            </div>
+        </div>
+    </div>
+</div>

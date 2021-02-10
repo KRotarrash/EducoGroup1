@@ -1,0 +1,50 @@
+﻿@model MazeCoreStructureViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/classInfo.js"></script>
+}
+
+<div>
+    <h1 class="page-name">Структура MazeCore</h1>
+    @foreach (var clas in Model.Classes)
+    {
+        <div class="class-block">
+            <div class="class-list-element"><a>@(clas.IsEnum ? "Enum" : "Класс") @clas.ClassName</a></div>
+            <div class="class-info">
+                @foreach (var method in clas.Methods)
+                {
+                    @switch (method.TypeElement)
+                    {
+                        case TypeElement.Attribute:
+                            <div>
+                                @(clas.IsEnum ? "Элемент" : "Свойство")
+                                @method.MethodName (@(method.IsPublic ? (clas.IsEnum ? "публичный" : "публичное") : "приватное")).
+                                Тип данных @method.ReturnType.Name
+                            </div>
+                            break;
+                        case TypeElement.Contrsuctor:
+                            <div>
+                                Конструктор
+                                @(method.InputParams.Length <= 0
+                                    ? "без входных параметров"
+                                    : "с входными параметрами:")
+                                @method.InputParams (@(method.IsPublic ? "публичный" : "приватный")).
+                                @(method.IsStatic ? "Статичный." : "")
+                            </div>
+                            break;
+                        case TypeElement.Method:
+                            <div>
+                                Метод @method.MethodName (@(method.IsPublic ? "публичный" : "приватный")).
+                                @(method.InputParams.Length <= 0 ? "Без входных параметров" : "Входные параметры: ")@method.InputParams.
+                                Возвращаемый тип @method.ReturnType.Name
+                            </div>
+                            break;
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>

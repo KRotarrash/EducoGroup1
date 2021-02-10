@@ -1,0 +1,25 @@
+﻿
+@model ManageQuestionnairesViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Questionnaire.css" />
+
+<div class="right-panel">
+    <div class="top-btn">
+        <a href="@Url.Action("NewQuestionnaire", "Questionnaire")"><span class="icon add" title="Добавить Опросник"></span></a> |
+    </div>
+    <div>
+        <h4>Список опросников</h4>
+    </div>
+    <div class="questionnaireList">
+        @foreach (var questionnaire in Model.Questionnaires)
+        {
+            <div class="questionnaireListItem">
+                <a href="@Url.Action("Questionnaire", "Questionnaire", new { @id = questionnaire.Id })">@questionnaire.Name</a>
+            </div>
+        }
+    </div>
+
+</div>

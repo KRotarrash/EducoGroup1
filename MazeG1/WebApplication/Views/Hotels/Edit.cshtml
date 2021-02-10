@@ -1,0 +1,31 @@
+﻿@model HotelViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/Hotels/Edit" method="post" class="form-user-create">
+    <div class="main">
+        <h1>@(Model.Id == 0 ? "Новый" : "Редактировать") отель</h1>
+        <div>
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name)
+                @Html.ValidationMessageFor(x => x.Name)
+                <span class="error-message error-forbidden-symbol">Запрещенные символы: '?', '/', '*'</span>
+        </div>
+
+        <div>
+            Владелец
+            <select id="OwnerId" name="@nameof(Model.OwnerId)">
+                @foreach (var user in Model.Users)
+                {
+                    <option value="@user.Id"
+                            selected="@(user.Id == Model.OwnerId)">
+                        @user.UserName
+                    </option>
+                }
+            </select>
+        </div>
+
+        <input type="submit" value="Создать" />
+    </div>
+</form>

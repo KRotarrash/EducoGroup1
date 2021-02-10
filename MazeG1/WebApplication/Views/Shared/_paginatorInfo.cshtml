@@ -1,0 +1,36 @@
+﻿@model PaginatorInfoViewModel
+
+<div class="paginator-block">
+    <!-- for js: $(#SortColumn).val() -->
+    @Html.HiddenFor(x => x.SortColumn)
+    @Html.HiddenFor(x => x.SortDirection)
+
+    <div>
+        @Model.From - @Model.To / @Model.TotalRecordCount
+    </div>
+
+    <div>
+        PageSize:
+        <select class="pageSize">
+            @foreach (var pageSizeOption in Model.PageSizeOptions)
+            {
+                <option value="@pageSizeOption"
+                        selected="@(pageSizeOption == Model.PageSize
+                            ? "selected"
+                            : null)">
+                    @pageSizeOption
+                </option>
+            }
+        </select>
+
+        Page:
+        @for (int i = 0; i < Model.TotalPageCount; i++)
+        {
+            <a class="@(Model.Page == i ? "page active" : "page")" data-page="@i">
+                @(i + 1)
+            </a>
+        }
+        /
+        @Model.TotalPageCount
+    </div>
+</div>

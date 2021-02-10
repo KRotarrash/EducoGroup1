@@ -1,0 +1,66 @@
+﻿@model HotelRoomBookingViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id='users'>
+    <form action="/Hotels/Booking" method="post" class="form-user-create">
+        <div class="main">
+            <h1>Бронирование номеров</h1>
+            <div>
+                @Html.LabelFor(x => x.DateStart)
+                @Html.TextBoxFor(x => x.DateStart, "{0:yyyy-MM-dd}",
+  new { @class = "form-control", placeholder = "DateEvent", min = DateTime.Now.Date, type = "date" })
+                @Html.ValidationMessageFor(x => x.DateStart)
+            </div>
+            <div>
+                @Html.LabelFor(x => x.DateFinish)
+                @Html.TextBoxFor(x => x.DateFinish, "{0:yyyy-MM-dd}",
+  new { @class = "form-control", placeholder = "DateEvent", min = DateTime.Now.Date, type = "date" })
+                @Html.ValidationMessageFor(x => x.DateFinish)
+            </div>
+
+            <div class="btn-table-job">
+                <a href="@Url.Action("Booking", "Hotels", new { @dtmStart = Model.DateStart, @dtmFinish = Model.DateFinish })">
+                    <span class="icon search" title="Показать свободные номера"></span>
+                </a>
+            </div>
+
+            <table>
+                <tr>
+                    <th>
+                        Наименование отеля
+                    </th>
+                    <th>
+                        Тип номера
+                    </th>
+                    <th>
+                        Этаж
+                    </th>
+                    <th>
+                        Действия
+                    </th>
+                </tr>
+                @foreach (var hotelRoom in Model.HotelRooms)
+                {
+                    <tr data-id="@hotelRoom.Id">
+                        <td>
+                            @hotelRoom.Hotel.Name
+                        </td>
+                        <td>
+                            @hotelRoom.TypeRoom
+                        </td>
+                        <td>
+                            @hotelRoom.Floor
+                        </td>
+                        <td>
+                            <a href="@Url.Action("BookRoom", "Hotels", new { @hotelRoomId = hotelRoom.Id, @userId = Model.User.Id, @dtmStart = Model.DateStart, @dtmFinish = Model.DateFinish })">
+                                <span class="icon booking" title="Забронировать номер"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </form>
+</div>

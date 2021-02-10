@@ -1,0 +1,71 @@
+﻿@using WebApplication.Models.Calendar;
+@model ManageCalendarEventsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/CalendarEvent';
+    </script>
+    <script src="~/js/paginator.js"></script>
+    <script src="~/js/calendar-table.js"></script>
+
+    <script src="~/js/chart-2.8.min.js"></script>
+    <script src="~/js/event-chart.js"></script>
+}
+
+<link rel="stylesheet" href="~/css/calendar.css" />
+
+<div id='users'>
+    <div class="main-title">
+        <h1>Календарь событий</h1>
+    </div>
+
+
+
+    <div>
+        <a href="@Url.Action("AddOrEdit", "CalendarEvent")"><span class="icon add-event" title="Добавить событие"></span></a> |
+        <a href="@Url.Action("AddOrEditTypeEvent", "CalendarEvent")"><span class="icon add-typeEvent" title="Добавить тип события"></span></a> |
+    </div>
+
+    <div class="calendar-block ">
+        <a href=""><span class="icon main-event event-title" data-table-class="table-main-event" title="Главные события"></span></a> |
+        <a href=""><span class="icon past-event event-title" data-table-class="table-past-event" title="Прошедшие события"></span></a> |
+        <a href=""><span class="icon coming-event event-title" data-table-class="table-coming-event" title="Предстоящие события"></span></a>
+    </div>
+
+    <span class="calendar-table" name="table-main-event"> </span>
+
+    <div class="calendar-main-event calendar-event" name="table-main-event">
+        <div class="main-title">
+            Главные события
+        </div>
+
+        <div class="calendar-event-year">
+            @Html.DisplayNameFor(x => x.CalendarEventYear):
+            @Html.DropDownList("CalendarEventYear", new SelectList(Model.CalendarEventYear.Years))
+        </div>
+
+        <div class="main-eventChart-container">
+            <canvas id="main-eventChart"></canvas>
+        </div>
+
+        @Html.Partial("/Views/CalendarEvent/_calendarInfo.cshtml", Model.CalendarEvents)
+    </div>
+
+    <div class="calendar-past-event calendar-event" name="table-past-event">
+        <div class="main-title">
+            Прошедшие события
+        </div>
+        @Html.Partial("/Views/CalendarEvent/_calendarInfo.cshtml", Model.CalendarPastEvents)
+    </div>
+
+    <div class="calendar-coming-event calendar-event" name="table-coming-events">
+        <div class="main-title">
+            Предстоящие события
+        </div>
+        @Html.Partial("/Views/CalendarEvent/_calendarInfo.cshtml", Model.CalendarComingEvents)
+    </div>
+
+</div>

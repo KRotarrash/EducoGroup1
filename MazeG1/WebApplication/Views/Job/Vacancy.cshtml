@@ -1,0 +1,118 @@
+﻿@model ManageVacancyViewModel
+@using WebApplication.Service
+
+@inject IUserService userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/Job/Vacancy';
+    </script>
+    <script src="~/js/paginator.js"></script>
+}
+
+<div id='users'>
+    <div class="header-table-job">
+        <h1>Список Вакансий</h1>
+    </div>
+
+    <div class="btn-table-job">
+        <a href="@Url.Action("NewJob", "Job")"><span class="icon add" title="Создать вакансию"></span></a>
+    </div>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <div class="table-calc">
+        <table>
+            <tbody>
+                <tr>
+                    <th>
+                        @Html.ActionLink("Номер", "Vacancy", "Job",
+                            new
+                                 {
+                                page = Model.PaginatorInfo.Page,
+                                pageSize = Model.PaginatorInfo.PageSize,
+                                sortColumn = SortColumn.Id,
+                                sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                                }
+                        )
+                    </th>
+                    <th>
+                        @Html.ActionLink("Организация", "Vacancy", "Job",
+                            new
+                            {
+                                page = Model.PaginatorInfo.Page,
+                                pageSize = Model.PaginatorInfo.PageSize,
+                                sortColumn = SortColumn.OrganizationName,
+                                sortDirection = Model.SortViewModel.colDirection(SortColumn.OrganizationName)
+                            }
+                        )
+                    </th>
+                    <th>
+                        @Html.ActionLink("Должность", "Vacancy", "Job",
+                            new
+                            {
+                                page = Model.PaginatorInfo.Page,
+                                pageSize = Model.PaginatorInfo.PageSize,
+                                sortColumn = SortColumn.PositionName,
+                                sortDirection = Model.SortViewModel.colDirection(SortColumn.PositionName)
+                            }
+                        )
+                    </th>
+                    <th>
+                        @Html.ActionLink("Дата з/п", "Vacancy", "Job",
+                            new
+                            {
+                                page = Model.PaginatorInfo.Page,
+                                pageSize = Model.PaginatorInfo.PageSize,
+                                sortColumn = SortColumn.OrganizationSalaryDate,
+                                sortDirection = Model.SortViewModel.colDirection(SortColumn.OrganizationSalaryDate)
+                            }
+                        )
+                    </th>
+                    <th>
+                        @Html.ActionLink("З/п, BYN", "Vacancy", "Job",
+                            new
+                            {
+                                page = Model.PaginatorInfo.Page,
+                                pageSize = Model.PaginatorInfo.PageSize,
+                                sortColumn = SortColumn.PositionSalary,
+                                sortDirection = Model.SortViewModel.colDirection(SortColumn.PositionSalary)
+                            }
+                        )
+                    </th>
+                    <th>
+                        Действия
+                    </th>
+                </tr>
+                @{var counter = 1; }
+                @foreach (var vacancy in Model.Vacancies)
+                {
+                    <tr>
+                        <td><p>@counter</p></td>
+                        <td><p>@vacancy.OrganizationPosition.Organization.Name</p></td>
+                        <td><p>@vacancy.OrganizationPosition.Position.Name</p></td>
+                        <td><p>@vacancy.OrganizationPosition.Organization.SalaryDate</p></td>
+                        <td><p>@vacancy.OrganizationPosition.Position.Salary</p></td>
+                        <td>
+                            @if (!userService.IsOwnerOrganization())
+                            {
+                                <a href="@Url.Action("GetJob", "Job", new { @jobId = vacancy.Id })">
+                                    <span class="icon getjob" title="Подать заявку на вакансию"></span>
+                                </a>
+                            }
+                            <a href="@Url.Action("JobCandidate", "Job", new { @jobId = vacancy.Id })">
+                                <span class="icon candidate" title="Кандидаты на вакансию"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    counter += 1;
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

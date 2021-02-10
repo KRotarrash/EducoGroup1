@@ -1,0 +1,104 @@
+﻿@using WebApplication.Models.Calendar;
+@model CalendarEventViewModels
+
+
+@Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+<table>
+    <tr>
+        <th>
+            @Html.ActionLink("Id", "Index", "CalendarEvent",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Id,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("Title", "Index", "CalendarEvent",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Title,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Title)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", "CalendarEvent",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Description,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Description)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("NameOfEvent", "Index", "CalendarEvent",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.NameOfTypeEvent,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.NameOfTypeEvent)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("DateEvent", "Index", "CalendarEvent",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.DateEvent,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.DateEvent)
+                }
+            )
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var сalendar in Model.CalendarEvents)
+    {
+        <tr>
+            <td>
+                @сalendar.Id
+            </td>
+            <td>
+                @сalendar.Title
+            </td>
+            <td>
+                @сalendar.Description
+            </td>
+            <td>
+                @сalendar.CalendarTypeEvent.NameOfTypeEvent
+            </td>
+            <td>
+                @сalendar.FormatDateEvent
+            </td>
+            <td>
+                <a href="@Url.Action("AddOrEdit", "CalendarEvent", new { @id = сalendar.Id })">
+                    <span class="icon edit" title="Редактировать данные события"></span>
+                </a>
+                <a href="@Url.Action("Remove", "CalendarEvent", new { @id = сalendar.Id })">
+                    <span class="icon remove" title="Удаляем событие"></span>
+                </a>
+                <a href="@Url.Action("AddOrEditTypeEvent", "CalendarEvent", new { @id = сalendar.CalendarTypeEvent.Id })">
+                    <span class="icon change-typeEvent" title="Меняем тип события"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+

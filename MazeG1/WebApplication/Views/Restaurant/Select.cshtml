@@ -1,0 +1,74 @@
+﻿@model RestaurantViewModel
+
+@using WebApplication.Models.Restaurant
+@using WebApplication.Service
+@inject IOrganizationService _organizationService
+@inject IUserService _userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Restaurant.css" />
+<div class="wrapper">
+    <div class="rest-panel">
+
+        <div class="header-rest">
+            Ресторан @Model.Name приветствует Вас!
+        </div>
+
+        <div class="restlist">
+            <div class="list">
+
+                <div>
+                    Меню блюд
+                </div>
+
+                <div class="imgRest">
+                    <img src="~/Img/rest/restmenu.jpg" />
+                </div>
+
+                <div class="underPic">
+
+                    <div>
+                        <a href="@Url.Action("SelectMenu", "Restaurant", new { @restaurantId = Model.Id })">
+                            <span class="nav-link">Меню @Model.Name</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            @if (_userService.IsOwnerOrganization() || _userService.IsAdministratorOrganization(Model.Id))
+            {
+                <div class="list">
+                    <div>
+                        Заказы
+                    </div>
+                    <div class="imgRest">
+                        <img src="~/Img/rest/restorder.jpg" />
+                    </div>
+                    <div class="underPic">
+                        <div class="">
+                            <a class="nav-link" href="@Url.Action("OrderSelect", "Restaurant")">Выбрать</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="list">
+                <div>
+                    Корзина заказов
+                </div>
+                <div class="imgRest">
+                    <img src="~/Img/rest/orderbin.jpg" />
+                </div>
+                <div class="underPic">
+                    <div class="">
+                        <a class="nav-link" href="@Url.Action("OrderBin", "Restaurant", new { @restaurantId = Model.Id})">Выбрать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

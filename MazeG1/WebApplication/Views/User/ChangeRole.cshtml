@@ -1,0 +1,25 @@
+﻿@namespace WebApplication.DbStuff.Model
+@model RoleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>Change user role</h1>
+    <form action="/User/ChangeRole" method="post">
+        @Html.HiddenFor(model => model.OwnerId)
+
+        <div>
+            Current user: @Model.UserName
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.RoleId):
+            @Html.DropDownListFor(x => x.RoleId,
+                Html.GetEnumSelectList(typeof(WebRole)))
+
+            @Html.ValidationMessageFor(x => x.RoleId)
+        </div>
+        <input type="submit" value="Изменить" /> 
+    </form>
+</div>

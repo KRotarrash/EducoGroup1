@@ -1,0 +1,22 @@
+﻿@model OrganizationViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <div class="header-job-add">
+            <h1>Назначение руководителя больницы</h1>
+        </div>
+        <form action="/Mayoralty/HospitalHead" method="post">
+            @Html.HiddenFor(model => model.Id)
+            <div>
+                Руководитель :
+                @Html.DropDownListFor(
+                m => m.OwnerId,
+                    new SelectList(Model.Users,
+                        $"{nameof(UserViewModel.Id)}",
+                        $"{nameof(UserViewModel.UserName)}"))
+            </div>
+            <input type="submit" value="Сохранить" />
+        </form>
+    </div>

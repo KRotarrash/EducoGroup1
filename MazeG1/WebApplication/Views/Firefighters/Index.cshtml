@@ -1,0 +1,60 @@
+﻿@using WebApplication.Models.Firefighters;
+@model ManageFireInspectionsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/Firefighters';
+    </script>
+    <script src="~/js/paginator.js"></script>
+    <script src="~/js/firefighters-table.js?v=2"></script>
+
+    <script src="~/js/chart-2.8.min.js"></script>
+    <script src="~/js/firefighters-chart.js?v=2"></script>
+}
+
+<link rel="stylesheet" href="~/css/firefighters.css" />
+
+<div id='users'>
+    <div class="main-title">
+        <h1>Служба пожаротушения</h1>
+    </div>
+
+
+    <div class="firefighters-block ">
+        <a href=""><span class="icon main-inspection inspection-title" data-table-class="table-main-inspection" title="Осмотр зданий"></span></a> |
+        <a href=""><span class="icon schedule-inspection inspection-title" data-table-class="table-schedule-inspection" title="График осмотра зданий"></span></a> |
+    </div>
+
+    <span class="firefighters-table" name="table-main-inspection"> </span>
+
+    <div class="firefighters-main-inspection firefighters-inspection" name="table-main-inspection">
+        <div class="main-title">
+            Информация об осмотре зданий
+        </div>
+
+        <div class="firefighters-inspection-year">
+            @Html.DisplayNameFor(x => x.FireInspectionYear):
+            @Html.DropDownList("FireInspectionBuildingYear", new SelectList(Model.FireInspectionYear.Years))
+        </div>
+
+        <div class="main-inspectionChart-container">
+            <canvas id="main-inspectionChart"></canvas>
+        </div>
+
+        @Html.Partial("/Views/Firefighters/_fireInspectionInfo.cshtml", Model.FireInspectionsBuilding)
+    </div>
+
+
+
+
+    <div class="firefighters-schedule-inspection firefighters-inspection" name="table-schedule-inspection">
+        <div class="main-title">
+            График осмотра зданий
+        </div>
+        @Html.Partial("/Views/Firefighters/_fireScheduleInfo.cshtml", Model.FireInspectionsSchedule)
+    </div>
+
+</div>

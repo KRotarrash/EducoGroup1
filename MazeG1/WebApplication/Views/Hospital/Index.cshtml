@@ -1,0 +1,86 @@
+﻿@model ManagePatientsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/Hospital';
+    </script>
+    <script src="~/js/paginator.js"></script>
+}
+
+<div id='users'>
+    <h1>Добрый день!</h1>
+
+    <div>
+        <a href="@Url.Action("EditDetail", "Hospital")"><span class="icon add" title="Добавить новую запись"></span></a> 
+    </div>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <table>
+        <tr>
+            <th>
+                @Html.ActionLink("№ карточки", "Index", "Hospital",
+                    new
+                         {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Id,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                        }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Имя", "Index", "Hospital",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Name,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Name)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Дата последнего осмотра", "Index", "Hospital",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.DateEvent,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.DateEvent)
+                    }
+                )
+            </th>
+            <th>
+                Действия
+            </th>
+        </tr>
+        @foreach (var record in Model.Records)
+        {
+            <tr>
+                <td>
+                    @record.Id
+                </td>
+                <td>
+                    @record.Patient.UserName
+                </td>
+                <td>
+                    @record.DateOfLastExamination
+                </td>
+                <td>
+                    <a href="@Url.Action("ViewRecord", "Hospital", new { @id = record.Id })">
+                        <span class="icon view" title="Просмотреть карточку"></span>
+                    </a>
+                    <a href="@Url.Action("RemoveRecord", "Hospital", new { @id = record.Id })">
+                        <span class="icon remove" title="Удалить карточку"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+</div>

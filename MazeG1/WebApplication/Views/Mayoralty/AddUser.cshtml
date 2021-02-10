@@ -1,0 +1,82 @@
+﻿@model UserViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/createUser.js?v=2"></script>
+    <script src="~/js/showMessage.js"></script>
+}
+
+<a class="back-link" href="/Mayoralty/Index">Вернутся назад</a>
+
+<div class="user-event-container">
+    <div class="user-event">
+        <div class="event-container">
+            <span class="message">
+
+            </span>
+            <a class="icon bad close-message"></a>
+        </div>
+    </div>
+</div>
+
+<div class="form-user-create">
+    <div class="main">
+        <h1>Registration User</h1>
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.LabelFor(x => x.UserName)
+                @Html.TextBoxFor(x => x.UserName)
+            </div>
+            <div class="field-error user-name-block ">
+                <span class="icon question"></span>
+                <span class="icon wait"></span>
+                <span class="icon check"></span>
+                <span class="icon bad"></span>
+                @Html.ValidationMessageFor(x => x.UserName)
+                <span class="error-message error-forbidden-symbol">Запрещенные символы: '?', '/', '*'</span>
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.LabelFor(x => x.Age)
+                @Html.TextBoxFor(x => x.Age, new { @type = "number" })
+            </div>
+            <div class="field-error">
+                @Html.ValidationMessageFor(x => x.Age)
+                <span class="error-message error-age-yang">Наш сайт предназначен только для лиц старше 18</span>
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.LabelFor(x => x.Height)
+                @Html.TextBoxFor(x => x.Height, new { @type = "number" })
+            </div>
+            <div class="field-error">
+                @Html.ValidationMessageFor(x => x.Height)
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.LabelFor(x => x.Password)
+                @Html.PasswordFor(x => x.Password)
+            </div>
+            <div class="field-error">
+                <span class="error-message error-short-password">Пароль должен содержать не менее 6 символов</span>
+            </div>
+        </div>
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.LabelFor(x => x.PasswordRepeat)
+                @Html.PasswordFor(x => x.PasswordRepeat)
+            </div>
+            <div class="field-error">
+                <span class="error-message error-short-password-repeat">Пароль должен содержать не менее 6 символов</span>
+                <span class="error-message not-equal-password">Значение отличается от введенного ранее</span>
+            </div>
+        </div>
+
+        <input class="button-user-create" type="submit" value="Создать" />
+    </div>
+</div>

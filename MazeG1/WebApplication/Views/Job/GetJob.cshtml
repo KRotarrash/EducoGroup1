@@ -1,0 +1,37 @@
+﻿@namespace WebApplication.DbStuff.Model
+@model VacancyViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="header-job-add">
+        <h1>Вакансия</h1>
+    </div>
+    <form action="/Job/GetJob" method="post">
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.User)
+        @Html.HiddenFor(model => model.User.Id)
+        @Html.HiddenFor(model => model.User.UserName)
+        @Html.HiddenFor(model => model.OrganizationPosition)
+        @Html.HiddenFor(model => model.OrganizationPosition.Id)
+        @Html.HiddenFor(model => model.OrganizationPosition.Organization.Id)
+        @Html.HiddenFor(model => model.OrganizationPosition.Position.Id)
+        <div>
+            <div>
+                в организации:
+                @Html.DisplayName(Model.OrganizationPosition.Organization.Name)
+            </div>
+        </div>
+
+        <div>
+            на должность:
+            @Html.DisplayName(Model.OrganizationPosition.Position.Name)
+        </div>
+        <div>
+            c зарплатой в размере, BYN:
+            @Html.DisplayName(Model.OrganizationPosition.Position.Salary.ToString())
+        </div>
+        <input type="submit" value="Подать заявку" />
+    </form>
+</div>

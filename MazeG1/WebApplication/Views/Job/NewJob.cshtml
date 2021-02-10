@@ -1,0 +1,34 @@
+﻿@model JobViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/PositionNameIsUniq.js"></script>
+}
+
+
+<div>
+    <div class="header-job-add">
+        <h1>Создание Вакансии</h1>
+    </div>
+    <form action="/Job/NewJobSave" method="post">
+        <div class="orgAdd">
+            <div class="org alert">
+                Работодатель: @Html.DropDownListFor(x => x.Organization.Id, new SelectList(Model.Organizations, "Id", "Name"))
+            </div>
+            <div class="btn-addOrg">
+                <a href="@Url.Action("NewOrganization", "Job")"><span class="icon add" title="Создать Работодателя"></span></a>
+            </div>
+        </div>
+
+        <div class="position">
+            Должность: @Html.TextBoxFor(x => x.Position.Name)
+            <div class="alertMessage"> У организации уже есть такая должность </div>
+        </div>
+        <div class="zp">
+            Зарплата: @Html.TextBoxFor(x => x.Position.Salary)
+        </div>
+        <input class="submitBatton" type="submit" value="Создать"  disabled="disabled"/>
+    </form>
+</div>

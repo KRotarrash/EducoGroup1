@@ -1,0 +1,30 @@
+.icon::before {
+    min-height: 20px;
+    min-width: 20px;
+    display: inline-block;
+    margin: 0;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    content: ' ';
+}
+
+.icon.add-fireInspection::before {
+    background-image: url(../Img/icon/add-fireInspection.png);
+}
+
+.icon.add-typeSafe::before {
+    background-image: url(../Img/icon/add-typeSafe.png);
+}
+
+.icon.change-typeSafe::before {
+    background-image: url(../Img/icon/change-typeSafe.png);
+}
+
+.icon.main-inspection::before {
+    background-image: url(../Img/icon/main-inspection.png);
+}
+
+.icon.schedule-inspection::before {
+    background-image: url(../Img/icon/schedule-inspection.png);
+}
+

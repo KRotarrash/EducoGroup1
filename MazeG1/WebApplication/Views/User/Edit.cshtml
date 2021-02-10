@@ -1,0 +1,110 @@
+﻿@namespace WebApplication.DbStuff.Model
+@model UserViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/createUser.js?v=2"></script>
+}
+
+<div>
+    <h1>Редактировать данные</h1>
+    <form action="/User/AddTag" method="post">
+        @Html.Hidden("UserId", Model.Id)
+        <input type="text" name="TagName" placeholder="Enter tag name"/>
+        <input type="submit" value="AddTag" />
+    </form>
+    <form action="/User/Edit" method="post">
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AdressCount)
+        @Html.HiddenFor(model => model.Role)
+
+        <div>
+            Пользователь: @Model.UserName
+        </div>
+
+        <div class="user-name-block">
+            @Html.DisplayNameFor(x => x.UserName)
+            : @Html.TextBoxFor(x => x.UserName)
+            <span class="icon question"></span>
+            <span class="icon wait"></span>
+            <span class="icon check"></span>
+            <span class="icon bad"></span>
+            @Html.ValidationMessageFor(x => x.UserName)
+            <span class="error-message error-forbidden-symbol">Запрещенные символы: '?', '/', '*'</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Password)
+            : @Html.PasswordFor(x => x.Password, new { @value = Model.Password })
+            @Html.ValidationMessageFor(x => x.Password)
+            <span class="error-message error-short-password">Пароль должен содержать не менее 6 символов</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.PasswordRepeat)
+            : @Html.PasswordFor(x => x.PasswordRepeat, new { @value = Model.PasswordRepeat })
+            @Html.ValidationMessageFor(x => x.PasswordRepeat)
+            <span class="error-message error-short-password-repeat">Пароль должен содержать не менее 6 символов</span>
+            <span class="error-message not-equal-password">Значение отличается от введенного ранее</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Age)
+            : @Html.TextBoxFor(x => x.Age, new { @type = "number" })
+            @Html.ValidationMessageFor(x => x.Age)
+            <span class="error-message error-age-yang">Наш сайт предназначен только для лиц старше 18</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Height)
+            : @Html.TextBoxFor(x => x.Height, new { @type = "number" })
+            @Html.ValidationMessageFor(x => x.Height)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.OrganizationPosition.Organization.Name)
+
+            <select id="organization" name="@nameof(Model.OrganizationId)">
+                @foreach (var organization in Model.Organizations)
+                {
+                    <option value="@organization.Id"
+                            selected="@(organization.Id == Model.OrganizationId)">
+                        @organization.Name
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.OrganizationPosition.Position.Name)
+            <select id="position" name="@nameof(Model.PositionId)">
+                <option>
+                    Выбирите организацию.
+                </option>
+            </select>
+        </div>
+
+        @if (Model.Аddresses.Count > 0)
+        {
+            <div>
+                @Html.DisplayNameFor(x => x.Аddress)
+
+                <select name="@nameof(Model.AddressId)">
+                    <option selected>
+                        Выбирите адрес
+                    </option>
+                    @foreach (var address in Model.Аddresses)
+                    {
+                        <option value="@address.Id" selected="@(address.Id == Model.Аddress.Id)">
+                            Город: @address.City,
+                            Улица/Проспект: @address.Street,
+                            Номер дома: @address.HouseNumber,
+                            Номер квартиры/офиса: @address.FlatNumber,
+                            Этаж: @address.Floor
+                        </option>
+                    }
+                </select>
+            </div>
+        }
+
+        <input type="submit" value="Сохранить изменения" />
+    </form>
+</div>

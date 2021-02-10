@@ -1,0 +1,34 @@
+﻿namespace WebApplication.Models
+{
+    public enum SortColumn
+    {
+        Id,
+        Name,    
+        Age, 
+        Height,
+        AddressCount,
+        Role, 
+        City, 
+        Street,
+        HouseNumber,
+        FlatNumber,
+        Floor,
+        TypePlacing, 
+        TypeStreet, 
+        OrganizationName, 
+        PositionName,
+        OrganizationSalaryDate,
+        PositionSalary,
+        Title,
+        Description,
+        NameOfTypeEvent,
+        DateEvent,
+        HotelName,
+        RoomCount,
+        NameOfTypeSafetyAssessment,
+        DateInspection,
+        DateInspectionSchedule,
+        UserName,
+        FireInspectionPeriodicity
+    }
+}

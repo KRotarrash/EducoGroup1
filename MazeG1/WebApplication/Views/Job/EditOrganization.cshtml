@@ -1,0 +1,70 @@
+﻿@model OrganizationViewModel
+@using WebApplication.DbStuff.Model.Job;
+@using WebApplication.Models.Job;
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <div class="header-job-add">
+            <h1>Редактирование работодателя</h1>
+        </div>
+        <form action="/Job/EditOrganization" method="post">
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.JobId)
+            <div class="orgNew">
+                <div class="org">
+                    Название организации:
+                    @Html.TextBoxFor(x => x.Name)
+                </div>
+            </div>
+            <div>
+                <div>
+                    Главный офис: <span class="mainOfficeName"> @Model.MainOffice?.Name </span> 
+                    <a class="link" href="@Url.Action("OrganizationOfficesManager", "Job", new { @organizationId = Model.Id })">Управление офисами</a>
+                </div>
+            </div>
+            <div class="date-zp">
+                Дата выплаты зарплаты:
+                @Html.DropDownListFor(x => x.SalaryDate, Enumerable.Range(1, 31)
+                    .Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+            </div>
+            <div>
+                Начало рабочего дня:
+                <input type="time" name="@nameof(Model.StartWork)">
+            </div>
+            <div>
+                Конец рабочего дня:
+                <input type="time" name="@nameof(Model.EndWork)">
+            </div>
+            <div>
+                Тип организации :
+                @Html.DropDownListFor(m => m.OrganizationType,
+                    Html.GetEnumSelectList<OrganizationType>(),
+                    "Выбирите тип")
+            </div>
+            <div>
+                Владелец организации :
+                @Html.DropDownListFor(
+                m => m.OwnerId,
+                    new SelectList(Model.Users,
+                        $"{nameof(UserViewModel.Id)}",
+                        $"{nameof(UserViewModel.UserName)}"))
+            </div>
+            <input type="submit" value="Сохранить" />
+        </form>
+
+        <span>Загрузить изображение^^</span>
+        <form action="/Job/MainImgAvatar" method="post" enctype="multipart/form-data">
+            <div>
+                <input type="file" name="mainImgUrl" />
+                @Html.HiddenFor(model => model.Id)
+            </div>
+            <div>
+                <input type="submit" value="Загрузить" />
+            </div>
+        </form>
+       
+    </div>

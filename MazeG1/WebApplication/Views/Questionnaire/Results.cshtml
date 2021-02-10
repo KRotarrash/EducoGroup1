@@ -1,0 +1,38 @@
+﻿@model ResultViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="resultWrapper">
+    
+        @foreach (var registration in Model.Registrations)
+        {
+            <div class="tableWrapper">
+                <table>
+                    <tr>
+                        <td colspan="2" class="questionnaireName">
+                            @registration.Questionnaire.Name <span>@registration.Date</span>
+                        </td>
+                    </tr>
+                    @foreach (var result in registration.QuestionnaireResults)
+                    {
+                        <tr>
+                            <td class="question">
+                                @result.Question.Text
+                            </td>
+                            <td class="answers">
+                                @foreach (var resultDetail in result.QuestionnaireResultDetails)
+                                {
+                                    <p>
+                                        @resultDetail.Answer.Text
+                                    </p>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    
+</div>

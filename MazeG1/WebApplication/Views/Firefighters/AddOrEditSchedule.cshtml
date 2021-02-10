@@ -1,0 +1,80 @@
+﻿@namespace WebApplication.Models.Firefighters
+@using WebApplication.Models.CustomHelpers
+@model FireInspectionScheduleAddOrEditViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/Firefighters/AddOrEditSchedule" method="post" class="form-firefighters-create">
+    @Html.HiddenFor(x => x.Id)
+    <div class="main">
+        <div class="main-title">
+            <h1>Создание/Редактирование информации о графике осмотра здания</h1>
+        </div>
+
+        @if (Model.BuildingAdresses.Count > 0)
+        {
+            <div>
+                @Html.DisplayNameFor(x => x.BuildingAdresses)
+
+                <select name="@nameof(Model.BuildingAdressId)">
+                    <option selected>
+                        Выберите адрес
+                    </option>
+                    @foreach (var address in Model.BuildingAdresses)
+                    {
+                        <option value="@address.Id" selected="@(address.Id == Model.BuildingAdressId)">
+                            Город: @address.City,
+                            Улица/Проспект: @address.Street,
+                            Номер дома: @address.HouseNumber
+                        </option>
+                    }
+                </select>
+            </div>
+        }
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.FireInspectionPeriodicity):
+                <select name="@nameof(Model.FireInspectionPeriodicity)">
+                    <option selected>
+                        "-- Select --"
+                    </option>
+                    @foreach (InspectionPeriodicity fireInspectionPeriodicity in Enum.GetValues(typeof(InspectionPeriodicity)))
+                    {
+                        <option value="@fireInspectionPeriodicity" selected="@(fireInspectionPeriodicity == Model.FireInspectionPeriodicity)">
+                            @EnumHelper.GetEnumDescription(fireInspectionPeriodicity)
+
+                        </option>
+                    }
+                </select>
+
+                @Html.HiddenFor(x => x.FireInspectionPeriodicity)
+            </div>
+            <div class="field-error">
+                @Html.ValidationMessageFor(x => x.FireInspectionPeriodicity)
+            </div>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.DateInspectionSchedule)
+                : @Html.TextBoxFor(x => x.DateInspectionSchedule, "{0:yyyy-MM-dd}",
+new { @class = "form-control", placeholder = "DateInspectionSchedule", type = "date" })
+
+                @Html.ValidationMessageFor(x => x.TimeInspectionSchedule)
+
+                @Html.DisplayNameFor(x => x.TimeInspectionSchedule)
+                : @Html.TextBoxFor(x => x.TimeInspectionSchedule, "{0:HH:mm}",
+new { @class = "form-control", placeholder = "TimeInspectionSchedule", type = "time" })
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.DateInspectionSchedule)
+                </div>
+            </div>
+        </div>
+
+
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

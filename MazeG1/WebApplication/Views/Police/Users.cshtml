@@ -1,0 +1,111 @@
+﻿@model ManageUsersViewModel
+@using WebApplication.Service
+@inject IUserService _userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/UserList.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+<script src="~/js/site.js"></script>
+
+@section Scripts{
+    <script src="~/js/policeUsers.js"></script>
+    <script src="~/js/showMessage.js"></script>
+}
+
+<div class="user-event-container">
+    <div class="user-event">
+        <div class="event-container">
+            <span class="message">
+
+            </span>
+            <a class="icon bad close-message"></a>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="user-table">
+
+        <tr>
+            <th>
+                Пользователь
+            </th>
+            <th>
+                Статус блокировки
+            </th>
+            <th>
+                Действие
+            </th>
+        </tr>
+
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <th>
+                    @user.UserName
+                </th>
+                <th>
+                    @if (_userService.IsBlocked(user.Id))
+                    {
+                        <span>+</span>
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </th>
+                <th>
+                    <a href="@Url.Action("ProfileRead", "Police", new { @id = user.Id })">
+                        <span class="icon edit" title="Просмотр данных пользователя"></span>
+                    </a>
+                    <a href="#">
+                        <span class="icon userban" title="Заблокировать пользователя" data-id="@user.Id" data-name="@user.UserName"></span>
+                    </a>
+                    @if (_userService.IsBlocked(user.Id))
+                    {
+                        <a href="@Url.Action("UserUnblock", "Police", new { @id = user.Id })">
+                            <span class="icon user-unban" title="Разблокировать пользователя" data-id="@user.Id" data-name="@user.UserName"></span>
+                        </a>
+                    }
+                </th>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="loginban-popup" id="logban">
+    <div class="cover"></div>
+    <div class="login-container block-container">
+        <div class="login-close">
+            <span class="close" title="Закрыть">&times;</span>
+        </div>
+        <div class="login-content animate">
+
+            <label><b>Заблокировать пользователя?</b></label>
+
+            <div>
+                <input type="radio" id="temporarily" name="blockUser" checked>
+                <label>Временно до </label>
+                <input id="dateban" type="date" value="2021-01-01">
+                <br>
+
+                <input type="radio" id="forever" name="blockUser">
+                <label>Навсегда</label><br>
+            </div>
+
+            <input type="hidden" id="user-id" name="user-id" value="0">
+            <input type="hidden" id="user-name" name="user-name" value="0">
+
+            <button class="block" type="submit">Заблокировать</button>
+
+            <button class="cancel">Отмена</button>
+        </div>
+    </div>
+</div>
+
+

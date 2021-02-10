@@ -1,0 +1,111 @@
+﻿@model ManageCandidateViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/Job';
+    </script>
+    <script src="~/js/paginator.js"></script>
+}
+
+<div id='users'>
+    <div class="header-table-job">
+        <h1>Список кандидатов на должность: @Model.Vacancy.OrganizationPosition.Position.Name  в организации: @Model.Vacancy.OrganizationPosition.Organization.Name</h1>
+    </div>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <div class="table-calc">
+        <table>
+            <tr>
+                <th>
+                    @Html.ActionLink("Id", "JobCandidate", "Job",
+                        new
+                             {
+                            page = Model.PaginatorInfo.Page,
+                            pageSize = Model.PaginatorInfo.PageSize,
+                            sortColumn = SortColumn.Id,
+                            sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                            }
+                    )
+                </th>
+                <th>
+                    @Html.ActionLink("Имя", "JobCandidate", "Job",
+                        new
+                        {
+                            page = Model.PaginatorInfo.Page,
+                            pageSize = Model.PaginatorInfo.PageSize,
+                            sortColumn = SortColumn.Name,
+                            sortDirection = Model.SortViewModel.colDirection(SortColumn.Name)
+                        }
+                    )
+                </th>
+                <th>
+                    @Html.ActionLink("Возраст", "JobCandidate", "Job",
+                        new
+                        {
+                            page = Model.PaginatorInfo.Page,
+                            pageSize = Model.PaginatorInfo.PageSize,
+                            sortColumn = SortColumn.Age,
+                            sortDirection = Model.SortViewModel.colDirection(SortColumn.Age)
+                        }
+                    )
+                </th>
+                <th>
+                    @Html.ActionLink("Место работы", "JobCandidate", "Job",
+                        new
+                        {
+                            page = Model.PaginatorInfo.Page,
+                            pageSize = Model.PaginatorInfo.PageSize,
+                            sortColumn = SortColumn.OrganizationName,
+                            sortDirection = Model.SortViewModel.colDirection(SortColumn.OrganizationName)
+                        }
+                    )
+                </th>
+                <th>
+                    @Html.ActionLink("Должность", "JobCandidate", "Job",
+                        new
+                        {
+                            page = Model.PaginatorInfo.Page,
+                            pageSize = Model.PaginatorInfo.PageSize,
+                            sortColumn = SortColumn.PositionName,
+                            sortDirection = Model.SortViewModel.colDirection(SortColumn.PositionName)
+                        }
+                    )
+                </th>
+                <th>
+                    Действия
+                </th>
+            </tr>
+            @foreach (var user in Model.Candidates)
+            {
+        <tr data-id="@user.Id">
+            <td>
+                @user.Id
+            </td>
+            <td>
+                @user.User.UserName
+            </td>
+            <td>
+                @user.User.Age
+            </td>
+            <td>
+                @user.OrganizationPosition.Organization.Name
+            </td>
+            <td>
+                @user.OrganizationPosition.Position.Name
+            </td>
+            <td>
+                <a href="@Url.Action("ApproveCandidate", "Job", new { @userId = user.User.Id, @jobId = Model.Vacancy.Id })">
+                    <span class="icon check" title="Утвердить на должность"></span>
+                </a>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+</div>

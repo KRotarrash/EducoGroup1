@@ -1,0 +1,98 @@
+﻿@model AdressViewModel
+@namespace WebApplication.Models.Address
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>Add user adress</h1>
+    <form action="/User/AddAdress" method="post">
+        <div>
+            Choose user:
+            <select id="OwnerId" name="OwnerId">
+                @foreach (var user in Model.Users)
+                {
+                    <option value="@user.Id">@user.UserName</option>
+                }
+            </select>
+        </div>
+
+        <div class="main">
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.TypePlacing):
+                    @Html.DropDownListFor(x => x.TypePlacing,
+                        Html.GetEnumSelectList(typeof(TypePlacing)))
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.TypePlacing)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.Country):
+                    @Html.TextBoxFor(x => x.Country)
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Country)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.City):
+                    @Html.TextBoxFor(x => x.City)
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.City)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.TypeStreet):
+                    @Html.DropDownListFor(x => x.TypeStreet,
+                        Html.GetEnumSelectList(typeof(TypeStreet)))
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.TypeStreet)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.Street):
+                    @Html.TextBoxFor(x => x.Street)
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Street)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.HouseNumber):
+                    @Html.TextBoxFor(x => x.HouseNumber)
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.HouseNumber)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.FlatNumber):
+                    @Html.TextBoxFor(x => x.FlatNumber)
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.FlatNumber)
+                </div>
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    @Html.DisplayNameFor(x => x.Floor):
+                    @Html.TextBoxFor(x => x.Floor)
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Floor)
+                </div>
+            </div>
+            <input type="submit" value="Нажать" />
+        </div>
+    </form>
+</div>

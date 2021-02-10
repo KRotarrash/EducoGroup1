@@ -1,0 +1,45 @@
+﻿@model UserViewModel
+@using WebApplication.DbStuff;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+
+    <a class="back-link" href="/Police/Users">Вернутся к списку пользователей</a>
+
+    <div>
+        <img class="avatar" src="/avatar/avatar-@(Model.Id).jpg" />
+    </div>
+
+    <div>Имя пользователя: @Model.UserName</div>
+    <div>Возраст пользователя: @Model.Age</div>
+    <div>Рост пользователя: @Model.Height</div>
+
+    @if (@Model.Аddress.FlatNumber > 0)
+    {
+        <div>
+            Адресс пользователя:
+            <span>город: @Model.Аddress.City</span>
+            <span>, улица/проспект: @Model.Аddress.Street</span>
+            <span>, номер дома: @Model.Аddress.Floor</span>
+            <span>, этаж: @Model.Аddress.Floor</span>
+            <span>, номер квартиры/офиса: @Model.Аddress.FlatNumber</span>.
+        </div>
+    }
+
+    <div>Название организации: @Model.OrganizationPosition.Organization.Name</div>
+    @if (@Model.OrganizationPosition.Organization.Name != HostSeed.OrganizationDefault)
+    {
+        <div>Дата выплаты ЗП: @Model.OrganizationPosition.Organization.SalaryDate</div>
+        <div>Занимаемая должность: @Model.OrganizationPosition.Position.Name</div>
+    }
+
+    @if (Model.EndBlocked > DateTime.Now)
+    {
+        <div>Время начала блокировки: @Model.DateBlocked</div>
+        <div>Время окончания блокировки: @Model.EndBlocked</div>
+    }
+
+</div>

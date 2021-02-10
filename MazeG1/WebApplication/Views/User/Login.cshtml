@@ -1,0 +1,43 @@
+﻿@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/loginUser.js"></script>
+}
+
+<div class="login-body">
+    <h1>Login</h1>
+    <form action="/User/login" method="post" class="form-user-login">
+        @Html.HiddenFor(x => x.ReturnUrl)
+
+        <div>
+            @Html.DisplayNameFor(x => x.UserName):
+            <span class="tooltip" data-tooltip='Формат: "Название Организации.Имя Пользователя"'>
+                @Html.TextBoxFor(x => x.UserName)
+            </span>
+            @Html.ValidationMessageFor(x => x.UserName)
+            
+            <span class="error-message error-short-name">Логин не может быть пустым.</span>
+            <span class="error-message error-short-name-lenght">Имя пользователя не может быть меньше 3-ёх символов.</span>
+            <span class="error-message error-short-name-format">Неверный формат.</span>
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.Password):
+            @Html.PasswordFor(x => x.Password)
+            @Html.ValidationMessageFor(x => x.Password)
+            <span class="error-message error-short-password">Пароль должен содержать не менее 6 символов</span>
+        </div>
+
+        <div class="buttons">
+            <div>
+                <input type="submit" value="Login" />
+            </div>
+            <a href="/User/AddLogin">
+                <input type="button" value="Sign up" />
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,88 @@
+﻿@model KeyClassViewModel
+@using WebApplication.Models.KeyClasses
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/keyKlass.js"></script>
+}
+
+
+<div class="keyClassesPageWrapper">
+    <h2>Список ключевых классов</h2>
+    <ul class="keyClassesList">
+        @foreach (KeyClassViewModel keyClass in Model.KeyClasses)
+        {
+        <li class="keyClassesItem">
+
+            <h4 class="className">@keyClass.ClassName</h4>
+            <div class="keyClassPropertys">
+                <h5>Поля</h5>
+                <ul class="memberList">
+                    @foreach (MemberViewModel item in keyClass.Members.Where(m => m.TypeElement == TypeElement.Attribute))
+                    {
+                        <li class="memberProperty">
+                            @{var access = "";}
+                            @{var isStatic = "";}
+                            @{
+                                if (item.IsPublic) access = "public";
+                                else access = "private";
+                            }
+                            @{if (item.IsStatic) isStatic = "static";}
+                            <div>
+                                <span class="access">@access</span>
+                                <span class="isStatic">@isStatic </span>
+                                <span class="memberName">@item.MemberName</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <h5>Конструкторы</h5>
+                <ul class="memberList">
+                    @foreach (MemberViewModel item in keyClass.Members.Where(m => m.TypeElement == TypeElement.Contrsuctor))
+                    {
+                        <li class="memberProperty">
+                            @{var access = "";}
+                            @{var isStatic = "";}
+                            @{
+                                if (item.IsPublic) access = "public";
+                                else access = "private";
+                            }
+                            @{if (item.IsStatic) isStatic = "static";}
+                            <div>
+                                <span class="access">@access</span>
+                                <span class="isStatic">@isStatic </span>
+                                <span class="memberName">@item.MemberName</span>
+                                <span class="inputParams">(@item.InputParams)</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <h5>Методы</h5>
+                <ul class="memberList">
+                    @foreach (MemberViewModel item in keyClass.Members.Where(m => m.TypeElement == TypeElement.Method))
+                    {
+                        <li class="memberProperty">
+                            @{var access = "";}
+                            @{var isStatic = "";}
+                            @{
+                                if (item.IsPublic) access = "public";
+                                else access = "private";
+                            }
+                            @{if (item.IsStatic) isStatic = "static";}
+                            <div>
+                                <span class="access">@access</span>
+                                <span class="isStatic">@isStatic </span>
+                                <span class="returnType">@item.ReturnType</span>
+                                <span class="memberName">@item.MemberName</span>
+                                <span class="inputParams">(@item.InputParams)</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </li>
+        }
+    </ul>
+</div>

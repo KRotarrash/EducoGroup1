@@ -1,0 +1,50 @@
+﻿@model UserViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{ 
+    <script src="~/js/createUser.js?v=2"></script>
+} 
+
+<div>
+    <h1>New login</h1>
+    <form action="/User/AddLogin" method="post" class="form-user-create">
+        <div class="user-name-block">
+            @Html.DisplayNameFor(x => x.UserName)
+            : @Html.TextBoxFor(x => x.UserName)
+            <span class="icon question"></span>
+            <span class="icon wait"></span>
+            <span class="icon check"></span>
+            <span class="icon bad"></span>
+            @Html.ValidationMessageFor(x => x.UserName)
+            <span class="error-message error-forbidden-symbol">Запрещенные символы: '?', '/', '*'</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Age)
+            : @Html.TextBoxFor(x => x.Age, new { @type = "number" })
+            @Html.ValidationMessageFor(x => x.Age)
+            <span class="error-message error-age-yang">Наш сайт предназначен только для лиц старше 18</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Height)
+            : @Html.TextBoxFor(x => x.Height, new { @type = "number" })
+            @Html.ValidationMessageFor(x => x.Height)
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.Password):
+            @Html.PasswordFor(x => x.Password)
+            @Html.ValidationMessageFor(x => x.Password)
+            <span class="error-message error-short-password">Пароль должен содержать не менее 6 символов</span>
+        </div>
+        <div>
+            @Html.DisplayNameFor(x => x.PasswordRepeat):
+            @Html.PasswordFor(x => x.PasswordRepeat)
+            @Html.ValidationMessageFor(x => x.Password)
+            <span class="error-message error-short-password-repeat">Пароль должен содержать не менее 6 символов</span>
+            <span class="error-message not-equal-password">Значение отличается от введенного ранее</span>
+        </div>
+
+        <input type="submit" value="Sign up" />
+    </form>
+</div>

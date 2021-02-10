@@ -1,0 +1,46 @@
+﻿@model QuestionnaireViewModel
+@using WebApplication.DbStuff.Model.Questionnaire
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Questionnaire.css" />
+
+<div>
+    <h1>Опросник: @Model.Name</h1>
+    <form action="/Questionnaire/SaveQuestionnaire" method="post">
+        @Html.HiddenFor(model => model.Id, Model.Id)
+        @foreach (var question in Model.Questions)
+        {
+            @Html.HiddenFor(model => question.Id, question.Id)
+            <h3>@question.Text</h3>
+            <ul>
+                @foreach (var answer in question.Answers)
+                {
+                    switch (question.Type)
+                    {
+                        case QuestionType.Single:
+                            <li>
+                                @Html.HiddenFor(model => question.Type, QuestionType.Single)
+                                @Html.RadioButtonFor(m => question.AnswerChoiseId, answer.Id)
+                                @Html.LabelFor(m => answer.Text, answer.Text)
+                            </li>
+                            break;
+
+                        case QuestionType.Multiple:
+                            @Html.HiddenFor(model => answer.Id, answer.Id)
+                            <li>
+                                @Html.HiddenFor(model => question.Type, QuestionType.Multiple)
+                                @Html.CheckBoxFor(x => answer.IsChecked)
+                                @Html.LabelFor(x => answer.Text, answer.Text)
+                            </li>
+                            break;
+                    }
+                }
+            </ul>
+        }
+        <input type="submit" value="Отправить" />
+    </form>
+</div>
+
+

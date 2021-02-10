@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Menu.cs" />
+    <Compile Remove="QuestionList.cs" />
+    <Compile Remove="QuestionnarieList.cs" />
+    <Compile Remove="UserList.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbFile\DbFile.csproj" />
+    <ProjectReference Include="..\MazeCore\MazeCore.csproj" />
+    <ProjectReference Include="..\Questionnaire\Questionnaire.csproj" />
+  </ItemGroup>
+
+</Project>

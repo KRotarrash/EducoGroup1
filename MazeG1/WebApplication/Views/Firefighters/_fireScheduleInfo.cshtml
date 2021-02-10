@@ -1,0 +1,119 @@
+﻿@namespace WebApplication.Models.Firefighters
+@using WebApplication.Models.CustomHelpers
+@model FireInspectionScheduleViewModels
+
+<div>
+    <a href="@Url.Action("AddOrEditSchedule", "Firefighters")"><span class="icon add-fireInspection" title="Добавить запись в график осмотра здания"></span></a> |
+</div>
+
+@Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+<table>
+    <tr>
+        <th>
+            @Html.ActionLink("Id", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Id,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("City", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.City,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.City)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("Street", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.Street,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.Street)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("HouseNumber", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.HouseNumber,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.HouseNumber)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("FireInspectionPeriodicity", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.FireInspectionPeriodicity,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.FireInspectionPeriodicity)
+                }
+            )
+        </th>
+        <th>
+            @Html.ActionLink("DateInspectionSchedule", "Index", "Firefighters",
+                new
+                {
+                    page = Model.PaginatorInfo.Page,
+                    pageSize = Model.PaginatorInfo.PageSize,
+                    sortColumn = SortColumn.DateInspectionSchedule,
+                    sortDirection = Model.SortViewModel.colDirection(SortColumn.DateInspectionSchedule)
+                }
+            )
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var fireInspection in Model.FireInspectionsSchedule)
+    {
+        <tr>
+            <td>
+                @fireInspection.Id
+            </td>
+            <td>
+                @fireInspection.BuildingAdress.City
+            </td>
+            <td>
+                @fireInspection.BuildingAdress.Street
+            </td>
+            <td>
+                @fireInspection.BuildingAdress.HouseNumber
+            </td>
+            <td>
+                @EnumHelper.GetEnumDescription(fireInspection.FireInspectionPeriodicity)
+            </td>
+            <td>
+                @fireInspection.FormatDateInspectionSchedule
+            </td>
+            <td>
+                <a href="@Url.Action("AddOrEditSchedule", "Firefighters", new { @id = fireInspection.Id })">
+                    <span class="icon edit" title="Редактировать данные графика осмотра здания"></span>
+                </a>
+                <a href="@Url.Action("RemoveSchedule", "Firefighters", new { @id = fireInspection.Id })">
+                    <span class="icon remove" title="Удаляем данные графика осмотра здания"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+

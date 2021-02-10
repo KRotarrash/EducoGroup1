@@ -1,0 +1,58 @@
+﻿@model ManageHotelHelperViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id='users'>
+    <h1>Выберите помощников</h1>
+
+    <form action="/Hotels/ChooseHelper" method="post">
+        @Html.HiddenFor(model => model.HotelId)
+        <table>
+            <tr>
+                <th>
+                    Текущий выбор
+                </th>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    Возраст
+                </th>
+                <th>
+                    Действия
+                </th>
+            </tr>
+            @foreach (var user in Model.Helpers)
+            {
+                <tr data-id="@user.Helper.Id">
+                    <td>
+                        <input id="AllowRating" type="checkbox" checked="@user.IsHelper" />
+                    </td>
+                    <td>
+                        @user.Helper.Id
+                    </td>
+                    <td>
+                        @user.Helper.UserName
+                    </td>
+                    <td>
+                        @user.Helper.Age
+                    </td>
+                    <td>
+                        <a href="@Url.Action("AddHelper", "Hotels", new { @hotelId = Model.HotelId, @userId = user.Helper.Id })">
+                            <span class="icon add" title="Добавить помощника"></span>
+                        </a>
+                        <a href="@Url.Action("DeleteHelper", "Hotels", new { @hotelId = Model.HotelId, @userId = user.Helper.Id })">
+                            <span class="icon remove" title="Удалить помощника"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <input type="submit" value="Сохранить" />
+    </form>
+</div>

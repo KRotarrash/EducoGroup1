@@ -1,0 +1,111 @@
+﻿@model ReflectionViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/reflection.js"></script>
+}
+
+<div>
+    <h1>Reflection</h1>
+    <p>Namespaces</p>
+    <br>
+
+    @foreach (var ns in Model.Namespaces)
+    {
+        <div class="spoiler">
+            <div class="header">
+                @ns
+            </div>
+            <div class="content">
+                <div class="spoiler">
+                    <div class="header classes-name">
+                        Классы
+                    </div>
+                    <div class="content">
+                        @foreach (var cl in Model.ClassesInfo.Where(x => x.Namespace == ns))
+                        {
+                            <div class="spoiler">
+                                <div class="header class-name">
+                                    Класс @cl.Name
+                                </div>
+                                <div class="content">
+                                    <div class="spoiler">
+                                        <div class="header attr">
+                                            Свойства
+                                        </div>
+                                        <div class="content">
+                                            @foreach (var prop in cl.Properties)
+                                            {
+                                                <div class="attrcontent">
+                                                    Свойство @prop.Name, тип @prop.Type, @prop.AccessModifier
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="spoiler">
+                                        <div class="header attr">
+                                            Поля
+                                        </div>
+                                        <div class="content">
+                                            @foreach (var f in cl.Fields)
+                                            {
+                                                <div class="attrcontent">
+                                                    Поле @f.Name, тип @f.Type, @f.AccessModifier
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="spoiler">
+                                        <div class="header attr">
+                                            Методы
+                                        </div>
+                                        <div class="content">
+                                            @foreach (var method in cl.Methods)
+                                            {
+                                                <div class="attrcontent">
+                                                    Метод @method.Name, возвращаемый тип @method.Type, @method.AccessModifier
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @if (Model.EnumsInfo.Where(e => e.Namespace == ns).Count() > 0)
+                {
+                    <div class="spoiler">
+                        <div class="header classes-name">
+                            Перечисляемые типы
+                        </div>
+                        <div class="content">
+                            @foreach (var e in Model.EnumsInfo.Where(e => e.Namespace == ns))
+                            {
+                                <div class="spoiler">
+                                    <div class="header class-name">
+                                        Enum @e.Name
+                                    </div>
+                                    <div class="content">
+                                        @{
+                                            for (int i = 1; i < e.Fields.Count(); i++)
+                                            {
+                                                <div class="attrcontent">
+                                                    <p>[@i] = @e.Fields[i].Name</p>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

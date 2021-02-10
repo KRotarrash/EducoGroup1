@@ -1,0 +1,150 @@
+﻿.icon::before {
+    min-height: 20px;
+    min-width: 20px;
+    display: inline-block;
+    margin: 0;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    content: ' ';
+}
+
+.icon.add::before {
+    background-image: url(../Img/icon/add.png);
+}
+.icon.job::before {
+    background-image: url(../Img/icon/job.png);
+}
+
+.icon.search::before {
+    background-image: url(../Img/icon/search.png);
+}
+
+.icon.booking::before {
+    background-image: url(../Img/icon/booking.png);
+}
+
+.icon.add-room::before {
+    background-image: url(../Img/icon/add-room.png);
+}
+
+.icon.remove::before {
+    background-image: url(../Img/icon/delete.png);
+}
+
+.icon.main::before {
+    background-image: url(../Img/icon/up.png);
+}
+
+.icon.role::before {
+    background-image: url(../Img/icon/change-user-role.png);
+}
+
+.icon.addAddress::before {
+    background-image: url(../Img/icon/address.png);
+}
+
+.icon.download::before {
+    background-image: url(../Img/icon/download.png);
+}
+
+
+.icon.question::before {
+    background-image: url(../Img/icon/question-mark.png);
+}
+
+.icon.bad::before {
+    background-image: url(../Img/icon/bad.png);
+}
+
+.icon.check::before {
+    background-image: url(../Img/icon/check.png);
+}
+
+.icon.wait::before {
+    background-image: url(../Img/icon/wait.gif);
+}
+
+.icon.edit::before {
+    background-image: url(../Img/icon/edit.png);
+}
+
+.icon.putbacket::before {
+    background-image: url(../Img/icon/putbacket.png);
+}
+
+.icon.home::before {
+    background-image: url(../Img/icon/home-24px.svg);
+}
+
+.icon.home:hover::before {
+    background-image: url(../Img/icon/home-24px_hover.svg);
+}
+
+.icon.calc::before {
+    background-image: url(../Img/icon/calculate-24px.svg);
+}
+
+.icon.calc:hover::before {
+    background-image: url(../Img/icon/calculate-24px_hover.svg);
+}
+
+.icon.group::before {
+    background-image: url(../Img/icon/group-24px.svg);
+}
+
+.icon.group:hover::before {
+    background-image: url(../Img/icon/group-24px_hover.svg);
+}
+
+.icon.getjob::before {
+    background-image: url(../Img/icon/getjob.png);
+}
+
+.icon.candidate::before {
+    background-image: url(../Img/icon/candidate.png);
+}
+
+.icon.event::before {
+    background-image: url(../Img/icon/event-24px.svg);
+}
+
+.icon.event:hover::before {
+    background-image: url(../Img/icon/event-24px_hover.svg);
+}
+
+.icon.view::before {
+    background-image: url(../Img/icon/view.png);
+}
+
+.icon.profile::before {
+    background-image: url(../Img/icon/profile.png);
+}
+
+.icon.userban::before {
+    background-image: url(../Img/icon/userban.png);
+}
+
+.icon.user-unban::before {
+    background-image: url(../Img/icon/user-unban.png);
+}
+
+.icon.marriage::before {
+    background-image: url(../Img/icon/marriage.png);
+}
+
+.icon.divorce::before {
+    background-image: url(../Img/icon/divorce.png);
+}
+
+.icon.seen::before {
+    background-image: url(../Img/icon/seen.png);
+}
+}
+
+.icon.firefighters::before {
+    background-image: url(../Img/icon/firefighters-24px.svg);
+}
+
+.icon.firefighters:hover::before {
+    background-image: url(../Img/icon/firefighters-24px_hover.svg);
+}

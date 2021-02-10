@@ -1,0 +1,73 @@
+﻿@using WebApplication.Models.Calendar;
+@model CalendarEventViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/CalendarEvent/AddOrEdit" method="post" class="form-calendar-create">
+    @Html.HiddenFor(x => x.Id)
+    <div class="main">
+        <div class="main-title">
+            <h1>Создание/Редактирование события в календаре</h1>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.Title)
+                : @Html.TextBoxFor(x => x.Title)
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field-area">
+                @Html.LabelFor(x => x.Description, 
+                     string.Format("{0}:", Html.DisplayNameFor(m => m.Description)))
+
+                @Html.TextAreaFor(x => x.Description)
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Description)
+                </div>
+            </div>
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.CalendarTypeEvents):
+            @Html.DropDownListFor(
+                    x => x.CalendarTypeEvent.Id,
+                    new SelectList(Model.CalendarTypeEvents, "Id", "NameOfTypeEvent", Model.CalendarTypeEvent.Id),
+                    "-- Select --"
+            )
+            @Html.HiddenFor(x => x.CalendarTypeEvent.NameOfTypeEvent)
+
+            <div class="field-error">
+                @Html.ValidationMessageFor(x => x.CalendarTypeEvent.Id)
+            </div>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.DateEvent)
+                : @Html.TextBoxFor(x => x.DateEvent, "{0:yyyy-MM-dd}",
+  new { @class = "form-control", placeholder = "DateEvent", min = Model.MinDateEvent, type = "date" })
+
+                @Html.ValidationMessageFor(x => x.TimeEvent)
+
+                @Html.DisplayNameFor(x => x.TimeEvent)
+                : @Html.TextBoxFor(x => x.TimeEvent, "{0:HH:mm}",
+  new { @class = "form-control", placeholder = "TimeEvent", type = "time" })
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.DateEvent)
+                </div>
+            </div>
+        </div>
+
+
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

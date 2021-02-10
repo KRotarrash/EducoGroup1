@@ -1,0 +1,148 @@
+﻿@using WebApplication.Localization
+@using WebApplication.Service
+
+@inject IUserService userService
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="midcontainer">
+
+    <div class="mainList">
+        @if (userService.IsAdmin())
+        {
+            <div class="users">
+                <u>@Home.Users</u>
+                <ul type="square">
+                    <li><a class="nav-link colorForAdmin" href="/User/Index">@Home.Users</a></li>
+                </ul>
+            </div>
+        }
+
+        <div>
+            @if (userService.IsPoliceman())
+            {
+                <div>
+                    <u>Полиция</u>
+                    <ul type="circle">
+                        <li><a class="nav-link @(userService.IsAdmin() ? "colorForSpecialUser": "")" href="/Police/Users">Пользователи сайта</a></li>
+                    </ul>
+                </div>
+            }
+        </div>
+
+        <div>
+            @if (userService.IsMayor())
+            {
+                <div>
+                    <u>Мэрия</u>
+                    <ul type="circle">
+                        <li><a class="nav-link @(userService.IsAdmin() ? "colorForSpecialUser": "")" href="/Mayoralty/Index">Мэрия</a></li>
+                    </ul>
+                </div>
+            }
+        </div>
+
+        <div class="hotels">
+            <u>Отели</u>
+            <ul type="circle">
+                @if (userService.IsAdmin())
+                {
+                    <li><a class="nav-link colorForAdmin" href="/Hotels/Index">Отели</a></li>
+                }
+                <li><a class="nav-link" href="/Hotels/Booking">Бронирование</a></li>
+            </ul>
+        </div>
+
+        <div class="vacancies">
+            <u>Работа</u>
+            <ul type="circle">
+                @if (userService.IsAdmin())
+                {
+                    <li><a class="nav-link colorForAdmin" href="/Job/Organizations">Организации</a></li>
+                    <li><a class="nav-link" href="/Job/Office">Офисы</a></li>
+                }
+
+                <li><a class="nav-link" href="/Job/Vacancy">Вакансии</a></li>
+                @if (userService.IsAdmin())
+                {
+                    <li><a class="nav-link colorForAdmin" href="/Job/Index">Должности</a></li>
+                }
+            </ul>
+
+        </div>
+
+        <div class="calc">
+            <u>@Home.Calculator</u>
+            <ul type="circle">
+                <li><a class="nav-link" href="/Calc/Index">@Home.Calculator</a></li>
+            </ul>
+        </div>
+
+        <div class="quest">
+            <u>@Home.Questionnaire</u>
+            <ul type="circle">
+                <li><a class="nav-link" href="/Questionnaire/Index">Опросник</a></li>
+                <li><a class="nav-link" href="/Questionnaire/Results">Результаты</a></li>
+            </ul>
+        </div>
+
+        <div class="maze">
+            <u>Лабиринт</u>
+            <ul type="circle">
+                <li><a class="nav-link" href="/Home/Maze">Maze</a></li>
+            </ul>
+
+        </div>
+
+        <div class="reflection">
+            <u>@Home.Reflection</u>
+            <ul type="circle">
+                <li><a class="nav-link" href="/Reflection/Index">WebApplication Reflection</a></li>
+                <li><a class="nav-link" href="/Reflection/keyClasses">KeyClasses</a></li>
+            </ul>
+
+        </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="calendar">
+                <u>@Home.Calendar</u>
+                <ul type="circle">
+                    <li><a class="nav-link" href="/CalendarEvent/Index">@Home.Calendar</a></li>
+                </ul>
+            </div>
+        }
+
+        <div class="establishments">
+            <u>@Home.Restaurant</u>
+            <ul type="circle">
+                <li><a class="nav-link" href="/Restaurant/Index">Ресторан</a></li>
+            </ul>
+        </div>
+
+        <div>
+            @if (userService.IsDoctor())
+            {
+                <div>
+                    <u>Больница</u>
+                    <ul type="circle">
+                        <li><a class="nav-link @(userService.IsAdmin() ? "colorForSpecialUser": "")" href="/Hospital/Index">Карточки пациентов</a></li>
+                    </ul>
+                </div>
+            }
+        </div>
+
+        @if (userService.IsFirefighter())
+        {
+            <div class="firefighters">
+                <u>@Home.Firefighters</u>
+                <ul type="circle">
+                    <li><a class="nav-link" href="/Firefighters/Index">@Home.Firefighters</a></li>
+                </ul>
+            </div>
+        }
+
+    </div>
+</div>

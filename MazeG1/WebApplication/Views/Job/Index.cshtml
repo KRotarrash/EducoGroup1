@@ -1,0 +1,57 @@
+﻿@model JobViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/chart-2.8.min.js"></script>
+    <script src="~/js/orgs-job-chart.js"></script>
+}
+
+<div>
+    <div class="header-table-job">
+        <h1>Список должностей</h1>
+    </div>
+
+    <div class="char-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div class="btn-table-job">
+        <a href="@Url.Action("NewJob", "Job")"><span class="icon add" title="Создать вакансию"></span></a>
+    </div>
+    <div class="table-calc">
+        <table>
+            <tbody>
+                <tr class="tableHeader">
+                    <td>Номер</td>
+                    <td>Организация</td>
+                    <td>Должность</td>
+                    <td>Дата з/п</td>
+                    <td>З/п, BYN</td>
+                    <td>Сотрудник</td>
+                    <td>Действия</td>
+                </tr>
+                @{var counter = 1; }
+                @foreach (var job in Model.JobViewModels)
+                {
+                    <tr>
+                        <td><p>@counter</p></td>
+                        <td><p>@job.Organization.Name</p></td>
+                        <td><p>@job.Position.Name</p></td>
+                        <td><p>@job.Organization.SalaryDate</p></td>
+                        <td><p>@job.Position.Salary</p></td>
+                        <td><p>@(job.User == null ? "" : job.User.UserName)</p></td>
+                        <td>
+                            <a href="@Url.Action("EditJob", "Job", new { @jobId = job.Id })">
+                                <span class="icon edit" title="Редактировать данные должности"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    counter += 1;
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

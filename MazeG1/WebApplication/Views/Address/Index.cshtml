@@ -1,0 +1,163 @@
+﻿@model ManageAddressViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/Address';
+    </script>
+    <script src="~/js/paginator.js"></script>
+    <script src="~/js/chart-2.8.min.js"></script>
+    <script src="~/js/address-chart.js"></script>
+}
+
+<div id='users'>
+    <h1>Список адресов</h1>
+    <div>
+        <a href="@Url.Action("Add", "Address")"><span class="icon add" title="Добавить адрес"></span></a> |
+    </div>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <table>
+        <tr>
+            <th>
+                @Html.ActionLink("Id", "Index", "Address",
+                    new
+                         {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Id,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                        }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("TypePlacing", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.TypePlacing,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.TypePlacing)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("City", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.City,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.City)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("TypeStreet", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.TypeStreet,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.TypeStreet)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Street", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Street,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Street)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("HouseNumber", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.HouseNumber,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.HouseNumber)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("FlatNumber", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.FlatNumber,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.FlatNumber)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Floor", "Index", "Address",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Floor,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Floor)
+                    }
+                )
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        @foreach (var address in Model.Addresses)
+        {
+            <tr>
+                <td>
+                    @address.Id
+                </td>
+                <td>
+                    @address.TypePlacing
+                </td>
+                <td>
+                    @address.City
+                </td>
+                <td>
+                    @address.TypeStreet
+                </td>
+                <td>
+                    @address.Street
+                </td>
+                <td>
+                    @address.HouseNumber
+                </td>
+                <td>
+                    @address.FlatNumber
+                </td>
+                <td>
+                    @address.Floor
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Address", new { @id = address.Id })">
+                        <span class="icon edit" title="Редактировать адрес"></span>
+                    </a>
+                    <a href="@Url.Action("Remove", "Address", new { @id = address.Id })">
+                        <span class="icon remove" title="Удалить адрес"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <div class="addressChartContainer">
+        <div class="chartWrapper">
+            <canvas id="addressChart"></canvas>
+        </div>
+    </div>
+</div>

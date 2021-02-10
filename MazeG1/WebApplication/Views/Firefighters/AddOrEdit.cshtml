@@ -1,0 +1,72 @@
+﻿@using WebApplication.Models.Firefighters;
+@model FireInspectionBuildingAddOrEditViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="/Firefighters/AddOrEdit" method="post" class="form-firefighters-create">
+    @Html.HiddenFor(x => x.Id)
+    <div class="main">
+        <div class="main-title">
+            <h1>Создание/Редактирование информации об осмотре здания</h1>
+        </div>
+
+        @if (Model.BuildingAdresses.Count > 0)
+        {
+            <div>
+                @Html.DisplayNameFor(x => x.BuildingAdresses)
+
+                <select name="@nameof(Model.BuildingAdressId)">
+                    <option selected>
+                        Выберите адрес
+                    </option>
+                    @foreach (var address in Model.BuildingAdresses)
+                    {
+                        <option value="@address.Id" selected="@(address.Id == Model.BuildingAdressId)">
+                            Город: @address.City,
+                            Улица/Проспект: @address.Street,
+                            Номер дома: @address.HouseNumber
+                        </option>
+                    }
+                </select>
+            </div>
+        }
+
+        <div>
+            @Html.DisplayNameFor(x => x.BuildingTypeSafetyAssessments):
+            @Html.DropDownListFor(
+                    x => x.BuildingTypeSafetyAssessmentId,
+                    new SelectList(Model.BuildingTypeSafetyAssessments, "Id", "NameOfTypeSafetyAssessment", Model.BuildingTypeSafetyAssessmentId),
+                    "-- Select --"
+            )
+            @Html.HiddenFor(x => x.NameOfTypeSafetyAssessment)
+
+            <div class="field-error">
+                @Html.ValidationMessageFor(x => x.BuildingTypeSafetyAssessmentId)
+            </div>
+        </div>
+
+        <div class="wrapper-row">
+            <div class="field">
+                @Html.DisplayNameFor(x => x.DateInspection)
+                : @Html.TextBoxFor(x => x.DateInspection, "{0:yyyy-MM-dd}",
+new { @class = "form-control", placeholder = "DateInspection", type = "date" })
+
+                @Html.ValidationMessageFor(x => x.TimeInspection)
+
+                @Html.DisplayNameFor(x => x.TimeInspection)
+                : @Html.TextBoxFor(x => x.TimeInspection, "{0:HH:mm}",
+new { @class = "form-control", placeholder = "TimeInspection", type = "time" })
+
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.DateInspection)
+                </div>
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(x => x.OwnerId)
+
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>

@@ -1,0 +1,176 @@
+﻿@model ManageUsersViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        var paginatorUrl = '/User';
+    </script>
+    <script src="~/js/paginator.js"></script>
+    <script src="~/js/users-index.js"></script>
+
+    <script src="~/js/chart-2.8.min.js"></script>
+    <script src="~/js/user-chart.js"></script>
+}
+
+<div id='users'>
+    <h1>Welcome</h1>
+
+    <div class="char-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div>
+        <a href="@Url.Action("Index", "Job")"><span class="icon job" title="Добавить работодателя"></span></a> |
+    </div>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <table>
+        <tr>
+            <th>
+                @Html.ActionLink("Id", "Index", "User",
+                    new
+                         {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Id,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Id)
+                        }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Name", "Index", "User",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Name,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Name)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Age", "Index", "User",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Age,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Age)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("Height", "Index", "User",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Height,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Height)
+                    }
+                )
+            </th>
+            <th>
+                @Html.ActionLink("AddressCount", "Index", "User",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.AddressCount,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.AddressCount)
+                    }
+                )
+            </th>
+            <th>
+                Organization
+            </th>
+            <th>
+                Position
+            </th>
+            <th>
+                @Html.ActionLink("Role", "Index", "User",
+                    new
+                    {
+                        page = Model.PaginatorInfo.Page,
+                        pageSize = Model.PaginatorInfo.PageSize,
+                        sortColumn = SortColumn.Role,
+                        sortDirection = Model.SortViewModel.colDirection(SortColumn.Role)
+                    }
+                )
+            </th>
+            <th>
+                Tags
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        @foreach (var user in Model.Users)
+        {
+            <tr class="@(user.Id == Model.CurrentUser.Id ? "currentUser" : "")" data-id="@user.Id">
+                <td>
+                    @user.Id
+                </td>
+                <td>
+                    @user.UserName
+                </td>
+                <td>
+                    @user.Age
+                </td>
+                <td>
+                    @user.Height
+                </td>
+                <td>
+                    <a href="#" class="user-adress">
+                        @user.AdressCount
+                    </a>
+                </td>
+                <td>
+                    <span class="tooltip" data-tooltip='День зарплаты @user.OrganizationPosition.Organization.SalaryDate числа, @user.OrganizationPosition.Position.Salary$'>
+                        @user.OrganizationPosition.Organization.Name
+                    </span>
+                </td>
+                <td>
+                    @user.OrganizationPosition.Position.Name
+                </td>
+                <td>
+                    @user.Role
+                </td>
+                <td>
+                    @string.Join(", ", user.Tags.Select(x => x.TagName))
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "User", new { @id = user.Id })">
+                        <span class="icon edit" title="Редактировать данные пользователя"></span>
+                    </a>
+                    <a href="@Url.Action("Remove", "User", new { @id = user.Id })">
+                        <span class="icon remove" title="Удаляем пользователя"></span>
+                    </a>
+
+                    <a href="@Url.Action("Download", "User", new { id = user.Id })">
+                        <span class="icon download" title="Скачать"></span>
+                    </a>
+                    <a href="@Url.Action("ChangeRole", "User", new { @id = user.Id })">
+                        <span class="icon role" title="Меняем роль пользователя"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.Partial("/Views/Shared/_paginatorInfo.cshtml", Model.PaginatorInfo)
+
+    <div class="user-adresses">
+        <div class="adress template" data-id="-1">
+            <span class="street">
+                Здесь будет улица
+            </span>
+            <a href="#" class="remove-adress">
+                <span class="icon remove" title="Удаляем пользователя"></span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model OfficeViewModel
+@using WebApplication.Models.Job;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (!Model.IsAnyAddress)
+{
+    <span>Извините в данный момент, вы не можете добавить офис.</span>
+    <span>Нет адресов.</span>
+}
+else
+{
+    <div>
+
+        <div class="header-office-add">
+            <h1>Создание офиса</h1>
+        </div>
+
+        <form name="new-office" action="/Job/AddOffice" method="post">
+
+            <div class="wrapper-row">
+                <div>
+                    @Html.LabelFor(x => x.Name)
+                    @Html.TextBoxFor(x => x.Name, new { placeholder = "Название офиса" })
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+            </div>
+
+            <div class="wrapper-row">
+                <div>
+                    @Html.LabelFor(x => x.Address)
+                    @Html.DropDownListFor(
+                        m => m.CurrentAdressId,
+                            new SelectList(Model.Addresses,
+                                $"{nameof(AdressViewModel.Id)}",
+                                $"{nameof(AdressViewModel.FullName)}"))
+                </div>
+                <div class="field-error">
+                    @Html.ValidationMessageFor(x => x.Address)
+                </div>
+            </div>
+
+            <div class="wrapper-row">
+                <div>
+                    Организация :
+                    @Html.DropDownListFor(
+                        m => m.CurrentOrganizationId,
+                            new SelectList(Model.Organizations,
+                                $"{nameof(OrganizationViewModel.Id)}",
+                                $"{nameof(OrganizationViewModel.Name)}"))
+                </div>
+                <div class="field-error">
+                </div>
+            </div>
+
+            <input class="submitBatton" type="submit" value="Создать" />
+        </form>
+    </div>
+
+}

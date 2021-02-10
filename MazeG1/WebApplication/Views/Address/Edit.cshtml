@@ -1,0 +1,80 @@
+﻿@namespace WebApplication.Models.Address
+@model AdressViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/createUser.js?v=2"></script>
+}
+
+<div>
+    <h1>Редактировать адрес</h1>
+    <form action="/Address/Edit" method="post">
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.OwnerId)
+        @Html.HiddenFor(model => model.Users)
+
+        <div>
+            @Html.DisplayNameFor(x => x.TypePlacing):
+            @Html.DropDownListFor(x => x.TypePlacing,
+                Html.GetEnumSelectList(typeof(TypePlacing)))
+
+            @Html.ValidationMessageFor(x => x.TypePlacing)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.Country)
+            : @Html.TextBoxFor(x => x.Country)
+            @Html.ValidationMessageFor(x => x.Country)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.City)
+            : @Html.TextBoxFor(x => x.City)
+            @Html.ValidationMessageFor(x => x.City)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.City):
+            @Html.TextBoxFor(x => x.City)
+            @Html.ValidationMessageFor(x => x.City)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.TypeStreet):
+            @Html.DropDownListFor(x => x.TypeStreet,
+                Html.GetEnumSelectList(typeof(TypeStreet)))
+
+            @Html.ValidationMessageFor(x => x.TypeStreet)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.Street):
+            @Html.TextBoxFor(x => x.Street)
+            @Html.ValidationMessageFor(x => x.Street)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.HouseNumber):
+            @Html.TextBoxFor(x => x.HouseNumber)
+            @Html.ValidationMessageFor(x => x.HouseNumber)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.FlatNumber):
+            @Html.TextBoxFor(x => x.FlatNumber)
+            @Html.ValidationMessageFor(x => x.FlatNumber)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(x => x.Floor):
+            @Html.TextBoxFor(x => x.Floor)
+            @Html.ValidationMessageFor(x => x.Floor)
+        </div>
+
+        <input type="submit" value="Сохранить изменения" />
+    </form>
+
+
+</div>

@@ -1,0 +1,87 @@
+﻿@model CalcViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/calc.js"></script>
+}
+
+<div class="calcIndex">
+    <div>
+        Калькуляторы
+    </div>
+
+    <div class="spoiler">
+        <div class="header">
+            Убийца...
+        </div>
+        <div class="content">
+            Дворцекий
+        </div>
+    </div>
+
+    <div>
+        <div class="calcNast">
+            <form action="Index" method="post">
+                <div class="number">Введите 1-ое число: @Html.TextBoxFor(x => @Model.Number1)</div>
+                <div class="number">Bведите 2-ое число: @Html.TextBoxFor(x => @Model.Number2)</div>
+                <div>
+                    Выберите операцию:
+                    <select name="Operation">
+                        <option value="0">Разделить</option>
+                        <option value="1">Умножить </option>
+                        <option value="2">Сложить</option>
+                        <option value="3">Отнять</option>
+                    </select>
+                </div>
+                <input type="submit" value="Равно" class="GetResult" />
+
+                @*<input type="button" value="Пустышка" class="fun" />*@
+
+                @*<input type="button" value="Отправить AJAX запрос" class="send" />*@
+
+                <input type="button" value="РавноAJAX" class="GetResultAjax" />
+                <hr>
+
+                <input type="button" value="Очистить таблицу AJAX" class="clearTable" />
+
+                <hr />
+                <input type="button" value="Загрузить таблицу в Docx" onclick="location.href='@Url.Action("TableToPDF", "Calc")'" />
+
+
+
+            </form>
+        </div>
+        <hr>
+        <div>Результат: <span class="answer">@Model.Answer</span></div>
+    </div>
+
+    <div class="table-calc">
+        <table class="calcHistoryTable">
+            <tbody>
+                <tr class="tableHeader">
+                    <td>Номер</td>
+                    <td>Введеное 1-е число</td>
+                    <td>Введеное 2-е число</td>
+                    <td>Операция</td>
+                    <td>Результат</td>
+                </tr>
+
+                @{
+                    var index = 1;
+                }
+                @foreach (var history in Model.CalcHistory)
+                {
+                    <tr>
+                        <td><p>@(index++)</p></td>
+                        <td><p>@history.Number1</p></td>
+                        <td><p>@history.Number2</p></td>
+                        <td><p>@history.Operation</p></td>
+                        <td><p>@history.Answer</p></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

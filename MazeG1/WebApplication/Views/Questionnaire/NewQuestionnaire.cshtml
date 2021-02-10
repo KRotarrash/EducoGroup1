@@ -1,0 +1,47 @@
+﻿@model AddQuestionnaireViewModel
+@using WebApplication.DbStuff.Model.Questionnaire
+@using WebApplication.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Questionnaire.css" />
+
+<div class="main-add">
+    <form action="/Questionnaire/NewQuestionnaireSave" method="post">
+        <div class="list-q">
+            <div>
+                Введите название опросника: @Html.TextBoxFor(x => @Model.QuestionnaireName)
+            </div>
+            <hr />
+            @for (int i = 0; i < AddQuestionnaireViewModel.maxCountQuestion; i++)
+            {
+                <div>
+                    Введите Вопрос №@i: @Html.TextBoxFor(x => @Model.Questions[i].Text)
+                    <div>
+                        @for (int j = 0; j < AddQuestionnaireViewModel.maxCountAnswer; j++)
+                        {
+                            <div>
+                                введите вариант ответа: @Html.TextBoxFor(x => @Model.Questions[i].Answers[j].Text)
+                            </div>
+                        }
+                    </div>
+                    <div>
+                        выберите тип ответа:
+                        <div>
+                            одиночный: @Html.RadioButtonFor(model => model.Questions[i].Type, QuestionType.Single)
+                        </div>
+                        <div>
+                            множественный: @Html.RadioButtonFor(model => model.Questions[i].Type, QuestionType.Multiple)
+                        </div>
+
+                    </div>
+                </div>
+                <hr />
+            }
+        </div>
+        <hr />
+        <input type="submit" value="Сохранить" />
+    </form>
+</div>

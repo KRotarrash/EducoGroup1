@@ -1,0 +1,72 @@
+﻿@model OrganizationViewModel
+@using WebApplication.DbStuff.Model.Job;
+@using WebApplication.Models.Job;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/OrganizationNameIsUniq.js"></script>
+}
+
+<div>
+    <div class="header-job-add">
+        <h1>Создание работодателя</h1>
+    </div>
+    @if (Model.FreeOffices.Count > 0)
+    {
+        <form id="NewOrg" name="NewOrg" action="/Job/NewOrganizationSave" method="post">
+            <div class="newOrg">
+                <div class="org">
+                    Организация: @Html.TextBoxFor(x => x.Name)
+                    <div class="alertMessage">Организация с таким названием уже существует</div>
+                </div>
+            </div>
+            <div>
+                Руководитель:
+                @Html.DropDownListFor(
+             m => m.OwnerId,
+                 new SelectList(Model.Users,
+                     $"{nameof(UserViewModel.Id)}",
+                     $"{nameof(UserViewModel.UserName)}"))
+            </div>
+            <div>
+                Главный офис:
+                @Html.DropDownListFor(
+             m => m.MainOffice.Id,
+                 new SelectList(Model.FreeOffices,
+                     $"{nameof(OfficeViewModel.Id)}",
+                     $"{nameof(OfficeViewModel.Name)}"),
+                     "Выберите офис")
+            </div>
+        
+            <div class="date-zp">
+                Дата выплаты зарплаты: @Html.TextBoxFor(x => x.SalaryDate)
+            </div>
+            <div>
+                Начало рабочего дня:
+                <input type="time" name="@nameof(Model.StartWork)">
+            </div>
+            <div>
+                Конец рабочего дня:
+                <input type="time" name="@nameof(Model.EndWork)">
+            </div>
+            <div>
+                Тип организации :
+                @Html.DropDownListFor(m => m.OrganizationType,
+                 Html.GetEnumSelectList<OrganizationType>(),
+                 "Выбирите тип")
+            </div>
+            <input class="submitBatton" type="submit" value="Создать" disabled="disabled" />
+        </form>
+    }
+    else
+    { 
+        <div>
+            На данный момент нет свободных офисов.
+            Вы можете <a class="link" href="@Url.Action("AddOffice", "Job")"> добавить новый </a>                              
+                                        
+        </div>
+    }
+</div>

@@ -1,0 +1,48 @@
+﻿@model DishViewModel
+@using WebApplication.Models.Restaurant;
+@using WebApplication.DbStuff.Institutions;
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<span>
+    Добавление нового блюда.
+</span>
+
+<div>
+    <form action="/Restaurant/AddOrEditDish" method="post">
+
+        @Html.HiddenFor(x => x.RestaurantId, Model.RestaurantId)
+        @Html.HiddenFor(x => x.Id, Model.Id)
+
+        <div>
+            Название:
+            @Html.TextBoxFor(x => x.Name)
+        </div>
+
+        <div>
+            Тип блюда:
+            @Html.DropDownListFor(m => m.DishType, Html.GetEnumSelectList(typeof(DishType)))
+        </div>
+
+        <div>
+            Цена:
+            @Html.TextBoxFor(x => x.Price)
+        </div>
+
+        <div>
+            Количество грамм:
+            @Html.TextBoxFor(x => x.Grams)
+        </div>
+
+        <div>
+            Описание:
+            @Html.TextAreaFor(x => x.Description)
+        </div>
+
+        <input type="submit" value="Сохранить" />
+
+    </form>
+</div>
