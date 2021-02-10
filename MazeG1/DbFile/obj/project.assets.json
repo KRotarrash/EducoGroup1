@@ -1,0 +1,111 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "c/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/c.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/c.dll": {}
+        }
+      },
+      "MazeCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MazeCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MazeCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "c/1.0.0": {
+      "type": "project",
+      "path": "../Questionnaire/Questionnaire.csproj",
+      "msbuildProject": "../Questionnaire/Questionnaire.csproj"
+    },
+    "MazeCore/1.0.0": {
+      "type": "project",
+      "path": "../MazeCore/MazeCore.csproj",
+      "msbuildProject": "../MazeCore/MazeCore.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "MazeCore >= 1.0.0",
+      "c >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Pasha\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\DbFile\\DbFile.csproj",
+      "projectName": "DbFile",
+      "projectPath": "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\DbFile\\DbFile.csproj",
+      "packagesPath": "C:\\Users\\Pasha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\DbFile\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Pasha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {
+            "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\MazeCore\\MazeCore.csproj": {
+              "projectPath": "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\MazeCore\\MazeCore.csproj"
+            },
+            "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\Questionnaire\\Questionnaire.csproj": {
+              "projectPath": "C:\\Users\\Pasha\\Source\\Repos\\EducoGroup1\\MazeG1\\Questionnaire\\Questionnaire.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
