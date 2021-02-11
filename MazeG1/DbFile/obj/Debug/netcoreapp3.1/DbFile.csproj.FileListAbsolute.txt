@@ -1,0 +1,14 @@
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\DbFile.deps.json
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\DbFile.dll
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\DbFile.pdb
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\c.dll
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\MazeCore.dll
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\MazeCore.pdb
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\bin\Debug\netcoreapp3.1\c.pdb
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.csprojAssemblyReference.cache
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.AssemblyInfoInputs.cache
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.AssemblyInfo.cs
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.csproj.CoreCompileInputs.cache
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.csproj.CopyComplete
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.dll
+C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\DbFile\obj\Debug\netcoreapp3.1\DbFile.pdb

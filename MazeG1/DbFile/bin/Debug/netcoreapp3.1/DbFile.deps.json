@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "DbFile/1.0.0": {
+        "dependencies": {
+          "MazeCore": "1.0.0",
+          "c": "1.0.0"
+        },
+        "runtime": {
+          "DbFile.dll": {}
+        }
+      },
+      "c/1.0.0": {
+        "runtime": {
+          "c.dll": {}
+        }
+      },
+      "MazeCore/1.0.0": {
+        "runtime": {
+          "MazeCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DbFile/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "c/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MazeCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -54,18 +54,19 @@
                 userName: $('#UserName').val(),
                 age: $('#Age').val(),
                 password: $('#Password').val(),
+                passwordRepeat: $('#PasswordRepeat').val(),
                 height: $('#Height').val()
             }
 
-            var url = `/Mayoralty/AddUserAjax?name=${data.name}&age=${data.age}&password=${data.password}&height=${data.height}`;
+            var url = `/Mayoralty/AddUserAjax?name=${data.name}&age=${data.age}&password=${data.password}&passwordRepeat=${data.passwordRepeat}&height=${data.height}`;
 
             $.post(url, data).done(function (result) {
 
                 if (result) {
-                    showMessage(`Пользователь ${data.name} успешно добавлен`, 'aquamarine');
+                    showMessage(`Пользователь ${data.userName} успешно добавлен`, 'aquamarine');
                 }
                 else {
-                    showMessage(`ПОЛЬЗОВАТЕЛЬ ${data.name} НЕ ДОБАВЛЕН`, '#bf2626');
+                    showMessage(`ПОЛЬЗОВАТЕЛЬ ${data.userName} НЕ ДОБАВЛЕН`, '#bf2626');
                 }
             });
         }
