@@ -69,9 +69,7 @@ namespace WebApplication.Controllers
             var path = _filetoPDF.GetDefaultFile();
 
             return PhysicalFile(path,
-               // "application/pdf",
-                         //  $"FilePDF.pdf");
-              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+               "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                $"FilePDF.pdf"); //почему название файла не берется? :(
         }
    
