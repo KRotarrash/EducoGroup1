@@ -1,9 +1,0 @@
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\bin\Debug\netcoreapp3.1\c.deps.json
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\bin\Debug\netcoreapp3.1\c.dll
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\bin\Debug\netcoreapp3.1\c.pdb
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\obj\Debug\netcoreapp3.1\Questionnaire.csprojAssemblyReference.cache
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\obj\Debug\netcoreapp3.1\Questionnaire.AssemblyInfoInputs.cache
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\obj\Debug\netcoreapp3.1\Questionnaire.AssemblyInfo.cs
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\obj\Debug\netcoreapp3.1\Questionnaire.csproj.CoreCompileInputs.cache
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\obj\Debug\netcoreapp3.1\c.dll
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\Questionnaire\obj\Debug\netcoreapp3.1\c.pdb

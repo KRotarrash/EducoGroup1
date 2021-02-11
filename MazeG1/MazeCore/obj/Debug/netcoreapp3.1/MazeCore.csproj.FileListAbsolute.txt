@@ -1,9 +1,0 @@
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\bin\Debug\netcoreapp3.1\MazeCore.deps.json
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\bin\Debug\netcoreapp3.1\MazeCore.dll
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\bin\Debug\netcoreapp3.1\MazeCore.pdb
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\obj\Debug\netcoreapp3.1\MazeCore.csprojAssemblyReference.cache
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\obj\Debug\netcoreapp3.1\MazeCore.AssemblyInfoInputs.cache
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\obj\Debug\netcoreapp3.1\MazeCore.AssemblyInfo.cs
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\obj\Debug\netcoreapp3.1\MazeCore.csproj.CoreCompileInputs.cache
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\obj\Debug\netcoreapp3.1\MazeCore.dll
-C:\Users\Pasha\Source\Repos\EducoGroup1\MazeG1\MazeCore\obj\Debug\netcoreapp3.1\MazeCore.pdb
