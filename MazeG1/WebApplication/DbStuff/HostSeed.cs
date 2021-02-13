@@ -132,8 +132,6 @@ namespace WebApplication.DbStuff
         {
             var organizationRepository = serviceProvider.GetService<IOrganizationRepository>();
             var organization = organizationRepository.GetOrganizationByName(HospitalNameDefault);
-            var position = FindOrCreatePositionForHospital(serviceProvider);
-            CreateOrganizationPositionIfNotExist(serviceProvider, organization, position);
 
             if (organization != null)
             {
@@ -148,8 +146,11 @@ namespace WebApplication.DbStuff
                 StartWork = DateTime.Parse(HospitalStartWorkDefault),
                 EndWork = DateTime.Parse(HospitalEndWorkDefault),
             };
-
             organizationRepository.Save(hospital);
+
+            var organization2 = organizationRepository.GetOrganizationByName(HospitalNameDefault);
+            var position = FindOrCreatePositionForHospital(serviceProvider);
+            CreateOrganizationPositionIfNotExist(serviceProvider, organization2, position);
         }
 
         private static void CheckAndCreateDefaultUser(IServiceProvider serviceProvider)
