@@ -66,6 +66,12 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("Users", "Police");
         }
+
+        public JsonResult SearchInUserTable(string searchString)
+        {
+            var model = _policePresentation.SearchInUserTable(searchString);
+            return Json(model);
+        }
     }
 }
 

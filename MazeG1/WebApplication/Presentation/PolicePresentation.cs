@@ -60,5 +60,17 @@ namespace WebApplication.Presentation
             _specialUserRepository.Save(user);
         }
 
+        public ManageUsersViewModel SearchInUserTable(string searchString)
+        {
+            var model = new ManageUsersViewModel();
+            var usersDb = _specialUserRepository.GetAll()
+                    .Where(x => x.Name.Contains(searchString))
+                    .ToList();
+
+            model.Users = _mapper.Map<List<UserViewModel>>(usersDb);
+
+            return model;
+        }
+
     }
 }
