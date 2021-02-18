@@ -12,9 +12,10 @@
 </span>
 
 <div>
-    <form action="/Restaurant/AddOrEditDish" method="post">
+    <form action="/Restaurant/UpdateDish" method="post">
 
         @Html.HiddenFor(x => x.RestaurantId, Model.RestaurantId)
+        @Html.HiddenFor(x => x.Id, Model.Id)
 
         <div>
             Название:
@@ -41,7 +42,7 @@
             @Html.TextAreaFor(x => x.Description)
         </div>
 
-        <input type="submit" value="Добавить" />
+        <input type="submit" value="Сохранить" />
 
     </form>
 </div>

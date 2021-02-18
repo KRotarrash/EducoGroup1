@@ -19,9 +19,12 @@ namespace WebApplication.Models.CustomAttribute
 
             var officeRepository = validationContext.GetService<IOfficeRepository>();
             var office = officeRepository.Get(viewModel.Name);
-            if (office?.Id != viewModel.Id)
+            if (office != null)
             {
+                if (office.Id != viewModel.Id)
+                {
                     return new ValidationResult("Офис с таким именем уже есть");
+                }
             }
 
             return ValidationResult.Success;

@@ -15,9 +15,14 @@ namespace WebApplication.DbStuff.Repository
     {
         public DishRepository(WebContext webContext) : base(webContext) { }
 
-        public IEnumerable<Dish> GetByName(string text, long restaurantId)
+        public IEnumerable<Dish> GetByNameAndRestaurantId(string text, long restaurantId)
         {
             return _dbSet.Where(x => x.Name.Contains(text) && x.Restaurant.Id == restaurantId);
+        }
+
+        public IQueryable<Dish> GetByRestaurantId(long restaurantId)
+        {
+            return _dbSet.Where(x => x.Restaurant.Id == restaurantId);
         }
 
         public Dish GetDishByOrderDish(OrderDish orderDish)

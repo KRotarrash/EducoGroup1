@@ -22,7 +22,7 @@
     </div>
 
     <div class="top-btn">
-        <a href="@Url.Action("CreateDish", "Restaurant", new { @id = Model.Id })"><span class="icon add" title="Добавить блюдо"></span></a> |
+        <a href="@Url.Action("AddDish", "Restaurant", new { @id = Model.Id })"><span class="icon add" title="Добавить блюдо"></span></a> |
     </div>
 
     @if (Model.Dishes.Count <= 0)
@@ -69,7 +69,7 @@
                                                     <div class="dish-name">@dish.Name</div>
                                                     @if (_userService.IsOwnerOrganization() || _userService.IsAdministratorOrganization(Model.Id))
                                                     {
-                                                        <a href="@Url.Action("EditDish", "Restaurant", new { @dishId = dish.Id })">
+                                                        <a href="@Url.Action("UpdateDish", "Restaurant", new { @dishId = dish.Id })">
                                                             <span class="icon edit" title="Редактировать блюдо"></span>
                                                         </a>
                                                         <a href="@Url.Action("RemoveDish", "Restaurant", new { @dishId = dish.Id, @restaurantId = Model.Id })">

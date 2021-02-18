@@ -59,7 +59,7 @@ namespace WebApplication.Service
         {
             var user = GetCurrentUser();
 
-            if (user != null)
+            if (user == null)
             {
                 return false;
             }

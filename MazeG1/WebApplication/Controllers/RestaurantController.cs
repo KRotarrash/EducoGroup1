@@ -22,31 +22,41 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
-        public IActionResult Select(long id)
+        public IActionResult SelectRestaurant(long id)
         {
-            var model = _restaurantPresentation.Select(id);
+            var model = _restaurantPresentation.SelectRestaurant(id);
 
             return View(model);
         }
 
-        public IActionResult CreateDish(long id)
+        [HttpGet]
+        public IActionResult AddDish(long id)
         {
-            var model = _restaurantPresentation.CreateDish(id);
+            var model = _restaurantPresentation.AddDish(id);
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult AddOrEditDish(DishViewModel model)
+        public IActionResult AddDish(DishViewModel model)
         {
-            _restaurantPresentation.AddOrEditDish(model);
+            _restaurantPresentation.AddDish(model);
 
-            if (model.Id > 0)
-            {
-                return Redirect($"SelectMenu?restaurantId={model.RestaurantId}");
-            }
+            return Redirect($"AddDish/{model.RestaurantId}");
+        }
 
-            return Redirect($"CreateDish/{model.RestaurantId}");
+        [HttpGet]
+        public IActionResult UpdateDish(long dishId)
+        {
+            return View(_restaurantPresentation.UpdateDish(dishId));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateDish(DishViewModel model)
+        {
+            _restaurantPresentation.UpdateDish(model);
+
+            return Redirect($"SelectMenu?restaurantId={model.RestaurantId}");
         }
 
         public IActionResult RemoveDish(long dishId, long restaurantId)
@@ -123,8 +133,8 @@ namespace WebApplication.Controllers
     
         public IActionResult GetDishByName(string text, long restaurantId)
         {
-            var dishPptions = _restaurantPresentation.GetDishByName(text, restaurantId);
-            return Json(dishPptions);
+            var dishOptions = _restaurantPresentation.GetDishByName(text, restaurantId);
+            return Json(dishOptions);
         }
     }
 }
